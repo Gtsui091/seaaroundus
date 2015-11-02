@@ -1,6 +1,6 @@
 Package: seaaroundus
-Title: Library for accessing Sea Around Us catch data
-Description: Access Sea Around Us catch data and view it as dataframes or
+Title: SeaAroundUs API Wrapper
+Description: Access SeaAroundUs catch data and view it as data frames or
   stacked area charts.
 Version: 1.0.0
 Authors@R: person("Robert Scott", "Reis", role=c("aut", "cre"))

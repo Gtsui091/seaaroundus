@@ -1,11 +1,16 @@
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(httr, jsonlite, ggplot2, grid, scales)
 
+# get base url to make api calls
+getapibaseurl <- function() {
+  return("http://api.qa1.seaaroundus.org/api/v1")
+}
+
 # get catch data for a region as a dataframe or stacked area chart
 getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=F) {
 
   # create url
-  baseurl <- "http://api.qa1.seaaroundus.org/api/v1"
+  baseurl <- getapibaseurl()
   querystring <- paste("?region_id=", id, "&limit=", limit, sep="")
   url <- paste(baseurl, region, measure, dimension, querystring, sep="/")
 
@@ -48,4 +53,22 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
 
     return(plot)
   }
+}
+
+# list available regions for a region type
+listregions <- function(region) {
+
+  # create url
+  baseurl <- getapibaseurl()
+  querystring <- paste("?region_id=", id, "&limit=", limit, sep="")
+  url <- paste(baseurl, region, "?nospatial=true", sep="/")
+
+  # call API
+  resp <- GET(url)
+  stop_for_status(resp)
+
+  # extract data from response
+  data <- fromJSON(content(resp, "text"))$data
+  df <- data.frame(data, row.names='id')
+  return(df)
 }
