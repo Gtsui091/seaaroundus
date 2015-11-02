@@ -8,3 +8,50 @@ This software is free software:  you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.  See the LICENSE file for a full statement of the License.
+
+
+### Installation
+```R
+install.packages("devtools")
+library(devtools)
+install_github("SeaAroundUs/rseaaroundus")
+```
+
+### Example usage
+```R
+# include the helper library
+library(seaaroundus)
+
+# get species data for Brazil as a data frame
+getcatchdata("eez", 76)
+
+# get top 3 species data for Brazil as a data frame
+getcatchdata("eez", 76, limit=3)
+
+# get reporting status data by value for Brazil as a data frame
+getcatchdata("eez", 76, measure="value", dimension="reporting-status")
+
+# get species data for Brazil as a chart
+getcatchdata("eez", 76, chart=T)
+```
+
+
+### Available parameters
+Regions:
+* eez
+* lme
+* rfmo
+* fishing-entity
+
+Measures:
+* tonnage
+* value
+
+Dimensions:
+* taxon
+* commercialgroup
+* functionalgroup
+* country
+* sector
+* catchtype
+* reporting-status
