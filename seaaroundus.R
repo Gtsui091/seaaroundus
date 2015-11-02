@@ -1,8 +1,5 @@
-library(httr)
-library(jsonlite)
-library(ggplot2)
-library(grid)
-library(scales)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(httr, jsonlite, ggplot2, grid, scales)
 
 # get catch data for a region as a dataframe or stacked area chart
 getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=F) {
