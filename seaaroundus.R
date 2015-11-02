@@ -43,12 +43,17 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
       data.frame(year=years, data=coldata, dim=rep(name, nrow(df)))
     }))
 
+    spectral <- c("#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5",
+      "#3288bd", "#5e4fa2", '#666', '#f88', '#88f', '#8f8', '#800', '#080', '#008', '#888', '#333')
+    chartcolors <- rep(spectral, 10)
+
     plot <- ggplot(df, aes(year, data)) +
       geom_area(aes(fill=dim), position="stack") +
       theme(legend.position="top", legend.key.size=unit(8, "native")) +
       scale_x_continuous(breaks=seq(min(years), max(years), 10), expand=c(0, 0)) +
       scale_y_continuous(breaks=pretty_breaks(n=10), expand=c(0, 0)) +
       guides(fill=guide_legend(title=NULL, direction="horizontal", byrow=T, ncol=5)) +
+      scale_fill_manual(values=chartcolors) +
       ylab(ylabel) + xlab("Year") + ggtitle(charttitle)
 
     return(plot)
