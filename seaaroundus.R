@@ -65,7 +65,6 @@ listregions <- function(region) {
 
   # create url
   baseurl <- getapibaseurl()
-  querystring <- paste("?region_id=", id, "&limit=", limit, sep="")
   url <- paste(baseurl, region, "?nospatial=true", sep="/")
 
   # call API

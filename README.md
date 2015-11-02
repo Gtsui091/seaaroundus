@@ -22,6 +22,9 @@ install_github("SeaAroundUs/rseaaroundus")
 # include the helper library
 library(seaaroundus)
 
+# list available eezs
+listregions('eez')
+
 # get species data for Brazil as a data frame
 getcatchdata("eez", 76)
 
