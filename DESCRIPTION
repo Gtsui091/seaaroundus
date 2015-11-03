@@ -1,16 +1,17 @@
 Package: seaaroundus
 Title: SeaAroundUs API Wrapper
 Description: Access SeaAroundUs catch data and view it as data frames or
-  stacked area charts.
+    stacked area charts.
 Version: 1.0.0
 Authors@R: person("Robert Scott", "Reis", email = "reis.robert.s@gmail.com", role=c("aut", "cre"))
+Depends: R (>= 3.2.2)
 License: AGPL-3.0
 LazyData: true
 Imports:
-  pacman,
-  httr,
-  jsonlite,
-  ggplot2,
-  grid,
-  scales,
-  geojsonio
+    pacman,
+    httr,
+    jsonlite,
+    ggplot2,
+    grid,
+    scales,
+    geojsonio

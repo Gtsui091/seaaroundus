@@ -2,7 +2,7 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(httr, jsonlite, ggplot2, grid, scales, geojsonio)
 
 # load saved data
-data(sysdata, envir=environment())
+# data(sysdata, envir=environment())
 
 # get base url to make api calls
 getapibaseurl <- function() {
