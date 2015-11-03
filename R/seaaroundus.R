@@ -1,20 +1,25 @@
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(httr, jsonlite, ggplot2, grid, scales, geojsonio)
+#' @import httr
+#' @import jsonlite
+#' @import ggplot2
+#' @import grid
+#' @import scales
+#' @import geojsonio
 
-# get base url to make api calls
+# get the base URL of the API
 getapibaseurl <- function() {
   return("http://api.qa1.seaaroundus.org/api/v1")
 }
 
-# call api and return data
+# call API and return data
 callapi <- function(url) {
-  resp <- httr::GET(url)
-  httr::stop_for_status(resp)
-  data <- jsonlite::fromJSON(content(resp, "text"))$data
+  resp <- GET(url)
+  stop_for_status(resp)
+  data <- fromJSON(content(resp, "text"))$data
   return(data)
 }
 
-# get catch data for a region as a dataframe or stacked area chart
+#' Get catch data for a region as a dataframe or stacked area chart
+#' @export
 getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=F) {
 
   # create url
@@ -66,7 +71,8 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
   }
 }
 
-# get a map of the region specified
+#' Get a map of the region specified
+#' @export
 getregionmap <- function(region, id) {
   # create url
   baseurl <- getapibaseurl()
@@ -82,7 +88,8 @@ getregionmap <- function(region, id) {
   return(regionmap)
 }
 
-# list available regions for a region type
+#' List available regions for a region type
+#' @export
 listregions <- function(region) {
 
   # create url
