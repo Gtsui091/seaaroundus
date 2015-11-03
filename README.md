@@ -11,10 +11,19 @@ This software is free software:  you can redistribute it and/or modify
 
 
 ### Installation
+
+*For Mac we need to get some prerequisites first:*
+```bash
+$ brew tap homebrew/versions
+$ brew install v8-315
+$ brew install gdal
+```
+
+*Now we can install the seaaroundus package from GitHub:*
 ```R
 install.packages("devtools")
 library(devtools)
-install_github("SeaAroundUs/rseaaroundus")
+devtools::install_github("SeaAroundUs/rseaaroundus")
 ```
 
 ### Example usage

@@ -1,5 +1,8 @@
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(httr, jsonlite, ggplot2, grid, scales)
+pacman::p_load(httr, jsonlite, ggplot2, grid, scales, geojsonio)
+
+# load saved data
+data(sysdata, envir=environment())
 
 # get base url to make api calls
 getapibaseurl <- function() {
@@ -58,6 +61,24 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
 
     return(plot)
   }
+}
+
+# get a map of the region specified
+getregionmap <- function(region, id) {
+  # create url
+  baseurl <- getapibaseurl()
+  url <- paste(baseurl, region, id, sep="/")
+
+  # call API
+  resp <- GET(url)
+  stop_for_status(resp)
+
+  # extract data from response
+  data <- fromJSON(content(resp, "text"))$data
+  geojson <- data['geojson']
+
+  regionmap <- map('worldHires', col="gray90", fill=T)
+  return(regionmap)
 }
 
 # list available regions for a region type

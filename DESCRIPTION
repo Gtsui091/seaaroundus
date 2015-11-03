@@ -4,7 +4,8 @@ Description: Access SeaAroundUs catch data and view it as data frames or
   stacked area charts.
 Version: 1.0.0
 Authors@R: person("Robert Scott", "Reis", role=c("aut", "cre"))
-License: file LICENSE
+License: AGPL-3.0
+LazyData: true
 Imports:
   pacman
   httr
@@ -12,3 +13,4 @@ Imports:
   ggplot2
   grid
   scales
+  geojsonio
