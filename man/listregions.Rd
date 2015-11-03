@@ -6,7 +6,16 @@
 \usage{
 listregions(region)
 }
+\arguments{
+\item{region}{region type}
+}
+\value{
+a data frame with region ids and title(s)
+}
 \description{
 List available regions for a region type
+}
+\examples{
+listregions("eez")
 }
 

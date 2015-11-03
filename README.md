@@ -44,7 +44,7 @@ getcatchdata("eez", 76, limit=3)
 getcatchdata("eez", 76, measure="value", dimension="reporting-status")
 
 # get species data for Brazil as a chart
-getcatchdata("eez", 76, chart=T)
+getcatchdata("eez", 76, chart=TRUE)
 ```
 
 

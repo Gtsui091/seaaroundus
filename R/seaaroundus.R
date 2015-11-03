@@ -19,8 +19,19 @@ callapi <- function(url) {
 }
 
 #' Get catch data for a region as a dataframe or stacked area chart
+#' @param region region type
+#' @param id region id
+#' @param measure measure of the data (default "tonnage")
+#' @param dimension dimension data is bucketed on (default "taxon")
+#' @param limit number of buckets of data plus one for "others" (default 10)
+#' @param chart boolean to return a chart versus a data frame (default false)
+#' @return data frame (or chart) with catch data for the requested region over time
 #' @export
-getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=F) {
+#' @examples
+#' getcatchdata("eez", 76)
+#' getcatchdata("eez", 76, measure="value", dimension="reporting-status")
+#' getcatchdata("eez", 76, chart=TRUE)
+getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
 
   # create url
   baseurl <- getapibaseurl()
@@ -63,7 +74,7 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
       theme(legend.position="top", legend.key.size=unit(8, "native")) +
       scale_x_continuous(breaks=seq(min(years), max(years), 10), expand=c(0, 0)) +
       scale_y_continuous(breaks=pretty_breaks(n=10), expand=c(0, 0)) +
-      guides(fill=guide_legend(title=NULL, direction="horizontal", byrow=T, ncol=5)) +
+      guides(fill=guide_legend(title=NULL, direction="horizontal", byrow=TRUE, ncol=5)) +
       scale_fill_manual(values=chartcolors) +
       ylab(ylabel) + xlab("Year") + ggtitle(charttitle)
 
@@ -71,8 +82,13 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
   }
 }
 
-#' Get a map of the region specified
+#' Get a map of the region specified (TODO)
+#' @param region region type
+#' @param id region id
+#' @return map of the region
 #' @export
+#' @examples
+#' getregionmap("eez", 76)
 getregionmap <- function(region, id) {
   # create url
   baseurl <- getapibaseurl()
@@ -84,12 +100,16 @@ getregionmap <- function(region, id) {
   # extract data from response
   geojson <- data['geojson']
 
-  regionmap <- 'foobar' # placeholder
+  regionmap <- 'TODO' # placeholder
   return(regionmap)
 }
 
 #' List available regions for a region type
+#' @param region region type
+#' @return a data frame with region ids and title(s)
 #' @export
+#' @examples
+#' listregions("eez")
 listregions <- function(region) {
 
   # create url

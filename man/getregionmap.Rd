@@ -2,11 +2,22 @@
 % Please edit documentation in R/seaaroundus.R
 \name{getregionmap}
 \alias{getregionmap}
-\title{Get a map of the region specified}
+\title{Get a map of the region specified (TODO)}
 \usage{
 getregionmap(region, id)
 }
+\arguments{
+\item{region}{region type}
+
+\item{id}{region id}
+}
+\value{
+map of the region
+}
 \description{
-Get a map of the region specified
+Get a map of the region specified (TODO)
+}
+\examples{
+getregionmap("eez", 76)
 }
 

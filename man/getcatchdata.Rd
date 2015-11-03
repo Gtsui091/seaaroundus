@@ -5,9 +5,30 @@
 \title{Get catch data for a region as a dataframe or stacked area chart}
 \usage{
 getcatchdata(region, id, measure = "tonnage", dimension = "taxon",
-  limit = 10, chart = F)
+  limit = 10, chart = FALSE)
+}
+\arguments{
+\item{region}{region type}
+
+\item{id}{region id}
+
+\item{measure}{measure of the data (default "tonnage")}
+
+\item{dimension}{dimension data is bucketed on (default "taxon")}
+
+\item{limit}{number of buckets of data plus one for "others" (default 10)}
+
+\item{chart}{boolean to return a chart versus a data frame (default false)}
+}
+\value{
+data frame (or chart) with catch data for the requested region over time
 }
 \description{
 Get catch data for a region as a dataframe or stacked area chart
+}
+\examples{
+getcatchdata("eez", 76)
+getcatchdata("eez", 76, measure="value", dimension="reporting-status")
+getcatchdata("eez", 76, chart=TRUE)
 }
 
