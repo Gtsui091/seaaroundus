@@ -83,7 +83,7 @@ getregionmap <- function(region, id) {
   # extract data from response
   geojson <- data['geojson']
 
-  regionmap <- map('worldHires', col="gray90", fill=T)
+  regionmap <- 'foobar' # placeholder
   return(regionmap)
 }
 

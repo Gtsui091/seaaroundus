@@ -10,7 +10,6 @@ License: file LICENSE
 LazyData: true
 Imports:
     httr,
-    jsonlite,
     ggplot2,
     grid,
     scales,
