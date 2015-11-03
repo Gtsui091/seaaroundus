@@ -1,4 +1,5 @@
 #' @import httr
+#' @importFrom jsonlite fromJSON
 #' @import ggplot2
 #' @import grid
 #' @import scales
