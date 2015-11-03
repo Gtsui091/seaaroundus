@@ -1,12 +1,17 @@
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(httr, jsonlite, ggplot2, grid, scales, geojsonio)
 
-# load saved data
-# data(sysdata, envir=environment())
-
 # get base url to make api calls
 getapibaseurl <- function() {
   return("http://api.qa1.seaaroundus.org/api/v1")
+}
+
+# call api and return data
+callapi <- function(url) {
+  resp <- httr::GET(url)
+  httr::stop_for_status(resp)
+  data <- jsonlite::fromJSON(content(resp, "text"))$data
+  return(data)
 }
 
 # get catch data for a region as a dataframe or stacked area chart
@@ -18,11 +23,9 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
   url <- paste(baseurl, region, measure, dimension, querystring, sep="/")
 
   # call API
-  resp <- GET(url)
-  stop_for_status(resp)
+  data <- callapi(url)
 
   # extract data from response
-  data <- fromJSON(content(resp, "text"))$data
   values <- data$values
   years <- values[[1]][,1]
   cols <- lapply(values, function(v) { v[,2] })
@@ -70,11 +73,9 @@ getregionmap <- function(region, id) {
   url <- paste(baseurl, region, id, sep="/")
 
   # call API
-  resp <- GET(url)
-  stop_for_status(resp)
+  data <- callapi(url)
 
   # extract data from response
-  data <- fromJSON(content(resp, "text"))$data
   geojson <- data['geojson']
 
   regionmap <- map('worldHires', col="gray90", fill=T)
@@ -89,11 +90,9 @@ listregions <- function(region) {
   url <- paste(baseurl, region, "?nospatial=true", sep="/")
 
   # call API
-  resp <- GET(url)
-  stop_for_status(resp)
+  data <- callapi(url)
 
   # extract data from response
-  data <- fromJSON(content(resp, "text"))$data
   df <- data.frame(data, row.names='id')
   return(df)
 }
