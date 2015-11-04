@@ -4,13 +4,12 @@
 #' @import grid
 #' @import scales
 #' @import rgdal
-#' @import mapproj
+#' @import maps
 #' @import sp
 
 # get the base URL of the API
 getapibaseurl <- function() {
-  #return("http://api.qa1.seaaroundus.org/api/v1")
-  return("http://localhost:8000/api/v1")
+  return("http://api.qa1.seaaroundus.org/api/v1")
 }
 
 # call API and return data
@@ -98,10 +97,6 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
 #' getregionmap("eez", 76)
 getregionmap <- function(region, id) {
 
-  # draw countries
-  url <- "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
-  countries <- fortify(readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE))
-
   # draw region
   url <- paste(getapibaseurl(), region, paste(id, "?geojson=true", sep=""), sep="/")
   rsp <- readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE)
@@ -109,14 +104,16 @@ getregionmap <- function(region, id) {
 
   # get bounds for map zoom
   bounds <- bbox(rsp)
+  dim <- round(max(diff(bounds[1,]), diff(bounds[1,])))
+  center <- c(mean(bounds[1,]), mean(bounds[2,]))
+  xlim <- c(center[1] - dim, center[1] + dim)
+  ylim <- c(center[2] - dim, center[2] + dim)
 
   # output the map
   map <- ggplot() +
-    geom_map(data=countries, map=countries, aes(map_id=id, x=long, y=lat), colour="#333333", fill="#EDE49A", size=0.25) +
-    geom_map(data=region, map=region, aes(map_id=id, x=long, y=lat), colour="#449FD5", fill="#CAD9EC") +
-    coord_map(projection="mollweide", xlim=c(bounds[1,1],bounds[1,2]), ylim=c(bounds[2,1],bounds[2,2])) +
-    theme_map() +
-    theme(panel.background = element_rect(fill='#81A6D6', colour='#333333'))
+    geom_map(data=region, map=region, aes(map_id=id, x=long, y=lat), colour="#449FD5", fill="#CAD9EC", size=0.25) +
+    borders("world", colour="#333333", fill="#EDE49A", size=0.25) +
+    coord_equal(xlim=xlim, ylim=ylim) + theme_map()
 
   return(map)
 }
@@ -144,18 +141,17 @@ listregions <- function(region) {
 # make maps look nicer
 # from: https://gist.github.com/hrbrmstr/33baa3a79c5cfef0f6df
 theme_map <- function(base_size=9, base_family="") {
-  require(grid)
   theme_bw(base_size=base_size, base_family=base_family) %+replace%
   theme(axis.line=element_blank(),
     axis.text=element_blank(),
     axis.ticks=element_blank(),
     axis.title=element_blank(),
-    panel.background=element_blank(),
+    panel.background=element_rect(fill='#81A6D6', colour='#333333'),
     panel.border=element_blank(),
     panel.grid=element_blank(),
     panel.margin=unit(0, "lines"),
     plot.background=element_blank(),
-    legend.justification = c(0,0),
-    legend.position = c(0,0)
+    legend.justification=c(0,0),
+    legend.position=c(0,0)
   )
 }

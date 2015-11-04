@@ -15,6 +15,6 @@ Imports:
     grid,
     scales,
     rgdal,
-    mapproj,
+    maps,
     sp
 RoxygenNote: 5.0.0
