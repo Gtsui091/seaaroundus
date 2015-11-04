@@ -2,7 +2,7 @@
 % Please edit documentation in R/seaaroundus.R
 \name{getregionmap}
 \alias{getregionmap}
-\title{Get a map of the region specified (TODO)}
+\title{Get a map of the region specified}
 \usage{
 getregionmap(region, id)
 }
@@ -15,7 +15,7 @@ getregionmap(region, id)
 map of the region
 }
 \description{
-Get a map of the region specified (TODO)
+Get a map of the region specified
 }
 \examples{
 getregionmap("eez", 76)

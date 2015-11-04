@@ -5,6 +5,7 @@
 #' @import scales
 #' @import rgdal
 #' @import mapproj
+#' @import sp
 
 # get the base URL of the API
 getapibaseurl <- function() {
