@@ -12,13 +12,17 @@ getcatchdata(region, id, measure = "tonnage", dimension = "taxon",
 
 \item{id}{region id}
 
-\item{measure}{measure of the data (default "tonnage")}
+\item{measure}{measure of the data
+Default: "tonnage"}
 
-\item{dimension}{dimension data is bucketed on (default "taxon")}
+\item{dimension}{dimension data is bucketed on
+Default: "taxon"}
 
-\item{limit}{number of buckets of data plus one for "others" (default 10)}
+\item{limit}{number of buckets of data plus one for "others"
+Default: 10}
 
-\item{chart}{boolean to return a chart versus a data frame (default false)}
+\item{chart}{boolean to return a chart versus a data frame
+Default: \code{FALSE}}
 }
 \value{
 data frame (or chart) with catch data for the requested region over time

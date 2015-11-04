@@ -1,13 +1,15 @@
 #' @import httr
-#' @importFrom jsonlite fromJSON
+#' @importFrom jsonlite fromJSON serializeJSON
 #' @import ggplot2
 #' @import grid
 #' @import scales
-#' @import geojsonio
+#' @import rgdal
+#' @import mapproj
 
 # get the base URL of the API
 getapibaseurl <- function() {
-  return("http://api.qa1.seaaroundus.org/api/v1")
+  #return("http://api.qa1.seaaroundus.org/api/v1")
+  return("http://localhost:8000/api/v1")
 }
 
 # call API and return data
@@ -21,10 +23,14 @@ callapi <- function(url) {
 #' Get catch data for a region as a dataframe or stacked area chart
 #' @param region region type
 #' @param id region id
-#' @param measure measure of the data (default "tonnage")
-#' @param dimension dimension data is bucketed on (default "taxon")
-#' @param limit number of buckets of data plus one for "others" (default 10)
-#' @param chart boolean to return a chart versus a data frame (default false)
+#' @param measure measure of the data
+#' Default: "tonnage"
+#' @param dimension dimension data is bucketed on
+#' Default: "taxon"
+#' @param limit number of buckets of data plus one for "others"
+#' Default: 10
+#' @param chart boolean to return a chart versus a data frame
+#' Default: \code{FALSE}
 #' @return data frame (or chart) with catch data for the requested region over time
 #' @export
 #' @examples
@@ -82,7 +88,7 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
   }
 }
 
-#' Get a map of the region specified (TODO)
+#' Get a map of the region specified
 #' @param region region type
 #' @param id region id
 #' @return map of the region
@@ -90,18 +96,28 @@ getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit
 #' @examples
 #' getregionmap("eez", 76)
 getregionmap <- function(region, id) {
-  # create url
-  baseurl <- getapibaseurl()
-  url <- paste(baseurl, region, id, sep="/")
 
-  # call API
-  data <- callapi(url)
+  # draw countries
+  url <- "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
+  countries <- fortify(readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE))
 
-  # extract data from response
-  geojson <- data['geojson']
+  # draw region
+  url <- paste(getapibaseurl(), region, paste(id, "?geojson=true", sep=""), sep="/")
+  rsp <- readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE)
+  region <- fortify(rsp)
 
-  regionmap <- 'TODO' # placeholder
-  return(regionmap)
+  # get bounds for map zoom
+  bounds <- bbox(rsp)
+
+  # output the map
+  map <- ggplot() +
+    geom_map(data=countries, map=countries, aes(map_id=id, x=long, y=lat), colour="#333333", fill="#EDE49A", size=0.25) +
+    geom_map(data=region, map=region, aes(map_id=id, x=long, y=lat), colour="#449FD5", fill="#CAD9EC") +
+    coord_map(projection="mollweide", xlim=c(bounds[1,1],bounds[1,2]), ylim=c(bounds[2,1],bounds[2,2])) +
+    theme_map() +
+    theme(panel.background = element_rect(fill='#81A6D6', colour='#333333'))
+
+  return(map)
 }
 
 #' List available regions for a region type
@@ -122,4 +138,23 @@ listregions <- function(region) {
   # extract data from response
   df <- data.frame(data, row.names='id')
   return(df)
+}
+
+# make maps look nicer
+# from: https://gist.github.com/hrbrmstr/33baa3a79c5cfef0f6df
+theme_map <- function(base_size=9, base_family="") {
+  require(grid)
+  theme_bw(base_size=base_size, base_family=base_family) %+replace%
+  theme(axis.line=element_blank(),
+    axis.text=element_blank(),
+    axis.ticks=element_blank(),
+    axis.title=element_blank(),
+    panel.background=element_blank(),
+    panel.border=element_blank(),
+    panel.grid=element_blank(),
+    panel.margin=unit(0, "lines"),
+    plot.background=element_blank(),
+    legend.justification = c(0,0),
+    legend.position = c(0,0)
+  )
 }

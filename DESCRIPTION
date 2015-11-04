@@ -14,5 +14,6 @@ Imports:
     ggplot2,
     grid,
     scales,
-    geojsonio
+    rgdal,
+    mapproj
 RoxygenNote: 5.0.0
