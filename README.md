@@ -45,6 +45,9 @@ getcatchdata("eez", 76, measure="value", dimension="reporting-status")
 
 # get species data for Brazil as a chart
 getcatchdata("eez", 76, chart=TRUE)
+
+# get region map of brazil
+getregionmap("eez", 76)
 ```
 
 
