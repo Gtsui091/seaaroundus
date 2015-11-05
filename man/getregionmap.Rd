@@ -18,6 +18,7 @@ map of the region
 Get a map of the region specified
 }
 \examples{
+getregionmap("eez")
 getregionmap("eez", 76)
 }
 
