@@ -100,7 +100,7 @@ getregionmap <- function(region, id) {
   # draw region
   url <- paste(getapibaseurl(), region, paste(id, "?geojson=true", sep=""), sep="/")
   rsp <- readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE)
-  region <- fortify(rsp)
+  regionmap <- fortify(rsp)
 
   # get bounds for map zoom
   bounds <- bbox(rsp)
@@ -109,11 +109,15 @@ getregionmap <- function(region, id) {
   xlim <- c(center[1] - dim, center[1] + dim)
   ylim <- c(center[2] - dim, center[2] + dim)
 
-  # output the map
-  map <- ggplot() +
-    geom_map(data=region, map=region, aes(map_id=id, x=long, y=lat), colour="#449FD5", fill="#CAD9EC", size=0.25) +
-    borders("world", colour="#333333", fill="#EDE49A", size=0.25) +
-    coord_equal(xlim=xlim, ylim=ylim) + theme_map()
+  # draw the map
+  map <- ggplot()
+  map <- map + geom_map(data=regionmap, map=regionmap, aes(map_id=id, x=long, y=lat), colour="#449FD5", fill="#CAD9EC", size=0.25)
+  if (identical(region, "eez")) { # use ifa for eez
+    url <- paste(getapibaseurl(), region, id, "ifa", "?geojson=true", sep="/")
+    ifa <- fortify(readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE))
+    map <- map + geom_map(data=ifa, map=ifa, aes(map_id=id, x=long, y=lat), colour="#E96063", fill="#E38F95", size=0.25)
+  }
+  map <- map + borders("world", colour="#333333", fill="#EDE49A", size=0.25) + coord_equal(xlim=xlim, ylim=ylim) + theme_map()
 
   return(map)
 }
