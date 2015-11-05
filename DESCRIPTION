@@ -1,6 +1,6 @@
 Package: seaaroundus
-Title: SeaAroundUs API Wrapper
-Description: Access SeaAroundUs catch data and view it as data frames or
+Title: Sea Around Us API Wrapper
+Description: Access Sea Around Us catch data and view it as data frames or
     stacked area charts.
 Version: 1.0.0
 Authors@R: person("Robert Scott", "Reis", email = "reis.robert.s@gmail.com", role=c("aut", "cre"))
@@ -17,4 +17,10 @@ Imports:
     rgdal,
     maps,
     sp
+Collate:
+    seaaroundus.R
+    helpers.R
+    listregions.R
+    getregionchart.R
+    getregionmap.R
 RoxygenNote: 5.0.0

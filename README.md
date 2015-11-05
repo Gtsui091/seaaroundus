@@ -1,4 +1,4 @@
-## SeaAroundUs API Wrapper
+## Sea Around Us API Wrapper
 R wrapper for the [Sea Around Us API](https://github.com/SeaAroundUs/sau-web-mt).
 
 The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.  
@@ -22,7 +22,6 @@ $ brew install gdal
 *Now we can install the seaaroundus package from GitHub:*
 ```R
 install.packages("devtools")
-library(devtools)
 devtools::install_github("SeaAroundUs/rseaaroundus")
 ```
 
