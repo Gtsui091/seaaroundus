@@ -12,10 +12,10 @@
 #' @return data frame (or chart) with catch data for the requested region over time
 #' @export
 #' @examples
-#' getcatchdata("eez", 76)
-#' getcatchdata("eez", 76, measure="value", dimension="reporting-status")
-#' getcatchdata("eez", 76, chart=TRUE)
-getcatchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
+#' catchdata("eez", 76)
+#' catchdata("eez", 76, measure="value", dimension="reporting-status")
+#' catchdata("eez", 76, chart=TRUE)
+catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
 
   # create url
   baseurl <- getapibaseurl()

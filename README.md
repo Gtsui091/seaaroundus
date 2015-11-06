@@ -34,22 +34,28 @@ library(seaaroundus)
 listregions('eez')
 
 # get species data for Brazil as a data frame
-getcatchdata("eez", 76)
+catchdata("eez", 76)
 
 # get top 3 species data for Brazil as a data frame
-getcatchdata("eez", 76, limit=3)
+catchdata("eez", 76, limit=3)
 
 # get reporting status data by value for Brazil as a data frame
-getcatchdata("eez", 76, measure="value", dimension="reporting-status")
+catchdata("eez", 76, measure="value", dimension="reporting-status")
 
 # get species data for Brazil as a chart
-getcatchdata("eez", 76, chart=TRUE)
+catchdata("eez", 76, chart=TRUE)
 
 # get map of all eez regions
-getregionmap("eez")
+regionmap("eez")
 
 # get region map of brazil
-getregionmap("eez", 76)
+regionmap("eez", 76)
+
+# eez vs high seas percent catch data frame
+eezsvshighseas()
+
+# eez vs high seas percent catch graph
+eezsvshighseas(chart=TRUE)
 ```
 
 

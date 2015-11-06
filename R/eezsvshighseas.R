@@ -4,10 +4,10 @@
 #' @return data frame (or chart) with High Seas vs. EEZ data for the requested region over time
 #' @export
 #' @examples
-#' geteezsvshighseas()
-#' geteezsvshighseas(chart=TRUE)
+#' eezsvshighseas()
+#' eezsvshighseas(chart=TRUE)
 
-geteezsvshighseas <- function(chart=FALSE) {
+eezsvshighseas <- function(chart=FALSE) {
 
   # call API
   data <- callapi(paste(getapibaseurl(), "global", "eez-vs-high-seas", "", sep="/"))

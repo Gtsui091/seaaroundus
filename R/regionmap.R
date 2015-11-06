@@ -4,9 +4,9 @@
 #' @return map of the region
 #' @export
 #' @examples
-#' getregionmap("eez")
-#' getregionmap("eez", 76)
-getregionmap <- function(region, id) {
+#' regionmap("eez")
+#' regionmap("eez", 76)
+regionmap <- function(region, id) {
 
   # draw all regions
   url <- paste(getapibaseurl(), region, "?geojson=true", sep="/")
