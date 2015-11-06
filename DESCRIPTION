@@ -21,6 +21,7 @@ Collate:
     seaaroundus.R
     helpers.R
     listregions.R
-    getregionchart.R
+    getcatchdata.R
     getregionmap.R
+    geteezsvshighseas.R
 RoxygenNote: 5.0.0
