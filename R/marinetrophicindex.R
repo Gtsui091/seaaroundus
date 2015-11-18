@@ -20,6 +20,7 @@ marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level
 
   # call API
   querystring <- paste("?region_id=", id, "&transfer_efficiency=", transferefficiency, sep="")
+  # TODO rmti has 3 data sets
   data <- callapi(paste(getapibaseurl(), region, "marine-trophic-index", querystring, sep="/"))
 
   # get the data for the chart
@@ -34,6 +35,7 @@ marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level
 
   # return chart
   } else {
+    # TODO rmti has 3 data sets
     ylabel <- switch(type,
                      mean_trophic_level = "Trophic level of the catch",
                      fib_index = "Fishing-in-balance index",
