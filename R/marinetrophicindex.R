@@ -13,6 +13,9 @@
 #' marinetrophicindex("eez", 76)
 #' marinetrophicindex("eez", 76, type="fib_index")
 #' marinetrophicindex("eez", 76, type="fib_index", transferefficiency=0.25)
+#' \dontrun{
+#' marinetrophicindex("eez", 76, chart=TRUE)
+#' }
 marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level", transferefficiency=0.1) {
 
   # call API
