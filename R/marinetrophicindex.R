@@ -23,7 +23,7 @@ marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level
   named_data <- data[[1]]
   names(named_data) <- data[[2]]
   data <- named_data[[type]]
-  df <- data.frame(mtl=data[,2], row.names=data[,1])
+  df <- data.frame(level=data[,2], row.names=data[,1])
 
   # return dataframe
   if (!chart) {
@@ -31,6 +31,19 @@ marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level
 
   # return chart
   } else {
-    #TODO
+    ylabel <- switch(type,
+                     mean_trophic_level = "Trophic level of the catch",
+                     fib_index = "Fishing-in-balance index",
+                     rmti = "RMTI")
+    title <- switch(type,
+                    mean_trophic_level = "Marine Trophic Index",
+                    fib_index = "Fishing in Balance Index",
+                    rmti = "Region-based Marine Trophic Index")
+    df <- data.frame(year=as.integer(unlist(rownames(df))), level=df[,1])
+    graph <- ggplot(data=df, aes(x=year, y=level)) +
+      scale_x_continuous(breaks=seq(min(df[["year"]]), max(df[["year"]]), 10), expand=c(0, 0)) +
+      geom_line(colour="blue") + geom_point(colour="blue") +
+      xlab("Year") + ylab(ylabel) + ggtitle(title)
+    return(graph)
   }
 }
