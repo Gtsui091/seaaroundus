@@ -4,8 +4,10 @@
 #' @return map of the region
 #' @export
 #' @examples
+#' \dontrun{
 #' regionmap("eez")
 #' regionmap("eez", 76)
+#' }
 regionmap <- function(region, id) {
 
   # draw all regions

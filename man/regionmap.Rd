@@ -18,7 +18,9 @@ map of the region
 Get a map of the region specified
 }
 \examples{
+\dontrun{
 regionmap("eez")
 regionmap("eez", 76)
+}
 }
 

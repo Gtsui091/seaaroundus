@@ -14,7 +14,9 @@
 #' @examples
 #' catchdata("eez", 76)
 #' catchdata("eez", 76, measure="value", dimension="reporting-status")
+#' \dontrun{
 #' catchdata("eez", 76, chart=TRUE)
+#' }
 catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
 
   # create url

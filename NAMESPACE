@@ -3,6 +3,7 @@
 export(catchdata)
 export(eezsvshighseas)
 export(listregions)
+export(marinetrophicindex)
 export(regionmap)
 import(ggplot2)
 import(grid)

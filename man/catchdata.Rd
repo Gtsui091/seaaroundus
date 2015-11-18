@@ -33,6 +33,8 @@ Get catch data for a region as a dataframe or stacked area chart
 \examples{
 catchdata("eez", 76)
 catchdata("eez", 76, measure="value", dimension="reporting-status")
+\dontrun{
 catchdata("eez", 76, chart=TRUE)
+}
 }
 

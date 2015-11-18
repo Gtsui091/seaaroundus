@@ -18,6 +18,8 @@ Get data for percent of High Seas vs. EEZ catches as a data frame or chart
 }
 \examples{
 eezsvshighseas()
+\dontrun{
 eezsvshighseas(chart=TRUE)
+}
 }
 

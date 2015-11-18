@@ -5,7 +5,9 @@
 #' @export
 #' @examples
 #' eezsvshighseas()
+#' \dontrun{
 #' eezsvshighseas(chart=TRUE)
+#' }
 
 eezsvshighseas <- function(chart=FALSE) {
 

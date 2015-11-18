@@ -24,4 +24,5 @@ Collate:
     catchdata.R
     regionmap.R
     eezsvshighseas.R
+    marinetrophicindex.R
 RoxygenNote: 5.0.0
