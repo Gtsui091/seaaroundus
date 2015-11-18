@@ -15,7 +15,7 @@ marinetrophicindex(region, id, chart = FALSE, type = "mean_trophic_level",
 \item{chart}{boolean to return a chart versus a data frame
 Default: \code{FALSE}}
 
-\item{type}{string for MTI data set ("mean_trophic_level", "fib_index", or "rmti")
+\item{type}{MTI data set ("mean_trophic_level", "fib_index", or "rmti")
 Default: "mean_trophic_level"}
 
 \item{transferefficiency}{float used for FiB index input
@@ -31,5 +31,8 @@ Get MTI as a data frame or chart
 marinetrophicindex("eez", 76)
 marinetrophicindex("eez", 76, type="fib_index")
 marinetrophicindex("eez", 76, type="fib_index", transferefficiency=0.25)
+\dontrun{
+marinetrophicindex("eez", 76, chart=TRUE)
+}
 }
 
