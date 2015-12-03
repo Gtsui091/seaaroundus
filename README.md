@@ -1,7 +1,9 @@
 ## Sea Around Us API Wrapper
 R wrapper for the [Sea Around Us API](https://github.com/SeaAroundUs/sau-web-mt).
 
-The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.  
+The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike 
+    4.0 International Public License.  
+
 Please read the data use policy described in the DATA_USE file.
 
 This software is free software:  you can redistribute it and/or modify
@@ -19,7 +21,7 @@ $ brew install v8-315
 $ brew install gdal
 ```
 
-*Now we can install the seaaroundus package from GitHub:*
+*Now we can install the seaaroundus package from GitHub in R:*
 ```R
 install.packages("devtools")
 devtools::install_github("SeaAroundUs/rseaaroundus")
@@ -56,6 +58,12 @@ eezsvshighseas()
 
 # eez vs high seas percent catch graph
 eezsvshighseas(chart=TRUE)
+
+# marine trophic index for Brazil as a data frame
+marinetrophicindex("eez", 76)
+
+# marine trophic index for Brazil as graph
+marinetrophicindex("eez", 76, chart=TRUE)
 ```
 
 
@@ -64,17 +72,21 @@ Regions:
 * eez
 * lme
 * rfmo
-* fishing-entity
+* eez-bordering
+* taxon
 
 Measures:
 * tonnage
 * value
 
 Dimensions:
-* taxon
+* taxon (not available for taxon region)
 * commercialgroup
 * functionalgroup
 * country
 * sector
 * catchtype
 * reporting-status
+* eez (only available for eez-bordering and taxon regions)
+* lme (only available for taxon region)
+* highseas (only available for taxon region)
