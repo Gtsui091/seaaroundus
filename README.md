@@ -14,19 +14,21 @@ This software is free software:  you can redistribute it and/or modify
 
 ### Prerequisites
 
-*Mac (via Homebrew)*
+*Mac via Homebrew*
 ```bash
 $ brew tap homebrew/versions
 $ brew install v8-315 gdal
 ```
 
-*Linux (via apt-get)*
+*Linux via apt-get*
 ```bash
 $ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 ```
 
 
 ### Installation
+
+*via the R prompt*
 ```R
 install.packages("devtools")
 devtools::install_github("SeaAroundUs/rseaaroundus")
