@@ -12,25 +12,26 @@ This software is free software:  you can redistribute it and/or modify
     any later version.  See the LICENSE file for a full statement of the License.
 
 
-### Installation
+### Prerequisites
 
-*Prerequisites for Mac:*
+*Mac (via Homebrew)*
 ```bash
 $ brew tap homebrew/versions
-$ brew install v8-315
-$ brew install gdal
+$ brew install v8-315 gdal
 ```
 
-*Prerequisites for Linux:*
+*Linux (via apt-get)*
 ```bash
 $ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 ```
 
-*Now we can install the seaaroundus package from GitHub in R:*
+
+### Installation
 ```R
 install.packages("devtools")
 devtools::install_github("SeaAroundUs/rseaaroundus")
 ```
+
 
 ### Example usage
 ```R
@@ -44,6 +45,7 @@ listregions('eez')
 catchdata("eez", 76)
 
 # use alternative API environment (available on all functions)
+# NOTE: alternative API environments may not always be publically accessible
 catchdata("eez", 76, env="qa")
 
 # get top 3 species data for Brazil as a data frame
@@ -56,12 +58,14 @@ catchdata("eez", 76, measure="value", dimension="reporting-status")
 catchdata("eez", 76, chart=TRUE)
 
 # get map of all eez regions
+# NOTE: users on Windows have had some issues drawing region maps
 regionmap("eez")
 
 # get region map of brazil
 regionmap("eez", 76)
 
 # eez vs high seas percent catch data frame
+# NOTE: data not available until SeaAroundUs global paper is released
 eezsvshighseas()
 
 # eez vs high seas percent catch graph
