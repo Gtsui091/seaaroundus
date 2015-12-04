@@ -86,7 +86,7 @@ Dimensions:
 * taxon (not available for taxon region)
 * commercialgroup
 * functionalgroup
-* country
+* fishing country
 * sector
 * catchtype
 * reporting-status
