@@ -14,4 +14,4 @@
 #' @import maps
 #' @import sp
 
-NULL
+globalVariables(c("year", "level_1950", "level_1962", "level_1972", "level", "long", "lat"))
