@@ -4,11 +4,14 @@
 \alias{eezsvshighseas}
 \title{Get data for percent of High Seas vs. EEZ catches as a data frame or chart}
 \usage{
-eezsvshighseas(chart = FALSE)
+eezsvshighseas(chart = FALSE, env = "prod")
 }
 \arguments{
 \item{chart}{boolean to return a chart versus a data frame
 Default: \code{FALSE}}
+
+\item{env}{API environment
+Default: "prod"}
 }
 \value{
 data frame (or chart) with High Seas vs. EEZ data for the requested region over time

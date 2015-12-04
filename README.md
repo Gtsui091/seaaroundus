@@ -38,6 +38,9 @@ listregions('eez')
 # get species data for Brazil as a data frame
 catchdata("eez", 76)
 
+# use alternative API environment (available on all functions)
+catchdata("eez", 76, env="qa")
+
 # get top 3 species data for Brazil as a data frame
 catchdata("eez", 76, limit=3)
 

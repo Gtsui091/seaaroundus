@@ -4,12 +4,15 @@
 \alias{regionmap}
 \title{Get a map of the region specified}
 \usage{
-regionmap(region, id)
+regionmap(region, id, env = "prod")
 }
 \arguments{
 \item{region}{region type}
 
 \item{id}{region id}
+
+\item{env}{API environment
+Default: "prod"}
 }
 \value{
 map of the region

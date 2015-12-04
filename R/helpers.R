@@ -1,6 +1,11 @@
 # get the base URL of the API
-getapibaseurl <- function() {
-  return("http://api.qa1.seaaroundus.org/api/v1")
+getapibaseurl <- function(env="prod") {
+  switch(
+    env,
+    "qa" = "http://api.qa1.seaaroundus.org/api/v1",
+    "stage" = "http://api.staging.seaaroundus.org/api/v1",
+    "prod" = "http://api.seaaroundus.org/api/v1"
+  )
 }
 
 # call API and return data

@@ -7,6 +7,8 @@
 #' Default: "mean_trophic_level"
 #' @param transferefficiency float used for FiB index input
 #' Default: 0.1
+#' @param env API environment
+#' Default: "prod"
 #' @return data frame (or chart) with MTI data
 #' @export
 #' @examples
@@ -16,15 +18,15 @@
 #' \dontrun{
 #' marinetrophicindex("eez", 76, chart=TRUE)
 #' }
-marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level", transferefficiency=0.1) {
+marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level", transferefficiency=0.1, env="prod") {
 
   # call API
   querystring <- paste("?region_id=", id, "&transfer_efficiency=", transferefficiency, sep="")
-  data <- callapi(paste(getapibaseurl(), region, "marine-trophic-index", querystring, sep="/"))
+  data <- callapi(paste(getapibaseurl(env), region, "marine-trophic-index", querystring, sep="/"))
 
   # get the data for the chart
-  named_data <- data[[1]]
-  names(named_data) <- data[[2]]
+  named_data <- data[[2]]
+  names(named_data) <- data[[1]]
 
   # rmti has 3 data sets
   if (type == "rmti") {
