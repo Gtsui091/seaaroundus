@@ -47,7 +47,7 @@ listregions('eez')
 catchdata("eez", 76)
 
 # use alternative API environment (available on all functions)
-# NOTE: alternative API environments may not always be publically accessible
+# NOTE: alternative API environments may not always be publically accessible or stable
 catchdata("eez", 76, env="qa")
 
 # get top 3 species data for Brazil as a data frame
