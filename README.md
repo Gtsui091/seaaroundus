@@ -14,11 +14,16 @@ This software is free software:  you can redistribute it and/or modify
 
 ### Installation
 
-*For Mac we need to get some prerequisites first:*
+*Prerequisites for Mac:*
 ```bash
 $ brew tap homebrew/versions
 $ brew install v8-315
 $ brew install gdal
+```
+
+*Prerequisites for Linux:*
+```bash
+$ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 ```
 
 *Now we can install the seaaroundus package from GitHub in R:*
