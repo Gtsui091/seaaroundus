@@ -4,13 +4,10 @@
 \alias{listregions}
 \title{List available regions for a region type}
 \usage{
-listregions(region, env = "prod")
+listregions(region)
 }
 \arguments{
 \item{region}{region type}
-
-\item{env}{API environment
-Default: "prod"}
 }
 \value{
 a data frame with region ids and title(s)

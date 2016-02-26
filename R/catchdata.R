@@ -9,8 +9,6 @@
 #' Default: 10
 #' @param chart boolean to return a chart versus a data frame
 #' Default: \code{FALSE}
-#' @param env API environment
-#' Default: "prod"
 #' @return data frame (or chart) with catch data for the requested region over time
 #' @export
 #' @examples
@@ -19,10 +17,10 @@
 #' \dontrun{
 #' catchdata("eez", 76, chart=TRUE)
 #' }
-catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE, env="prod") {
+catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
 
   # create url
-  baseurl <- getapibaseurl(env)
+  baseurl <- getapibaseurl()
   querystring <- paste("?region_id=", id, "&limit=", limit, sep="")
   url <- paste(baseurl, region, measure, dimension, querystring, sep="/")
 

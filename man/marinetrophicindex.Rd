@@ -5,7 +5,7 @@
 \title{Get MTI as a data frame or chart}
 \usage{
 marinetrophicindex(region, id, chart = FALSE, type = "mean_trophic_level",
-  transferefficiency = 0.1, env = "prod")
+  transferefficiency = 0.1)
 }
 \arguments{
 \item{region}{region type}
@@ -20,9 +20,6 @@ Default: "mean_trophic_level"}
 
 \item{transferefficiency}{float used for FiB index input
 Default: 0.1}
-
-\item{env}{API environment
-Default: "prod"}
 }
 \value{
 data frame (or chart) with MTI data

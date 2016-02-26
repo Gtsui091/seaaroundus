@@ -1,8 +1,6 @@
 #' Get data for percent of High Seas vs. EEZ catches as a data frame or chart
 #' @param chart boolean to return a chart versus a data frame
 #' Default: \code{FALSE}
-#' @param env API environment
-#' Default: "prod"
 #' @return data frame (or chart) with High Seas vs. EEZ data for the requested region over time
 #' @export
 #' @examples
@@ -11,10 +9,10 @@
 #' eezsvshighseas(chart=TRUE)
 #' }
 
-eezsvshighseas <- function(chart=FALSE, env="prod") {
+eezsvshighseas <- function(chart=FALSE) {
 
   # call API
-  data <- callapi(paste(getapibaseurl(env), "global", "eez-vs-high-seas", "", sep="/"))
+  data <- callapi(paste(getapibaseurl(), "global", "eez-vs-high-seas", "", sep="/"))
 
   # create dataframe
   values <- data$values

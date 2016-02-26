@@ -1,8 +1,6 @@
 #' Get a map of the region specified
 #' @param region region type
 #' @param id region id
-#' @param env API environment
-#' Default: "prod"
 #' @return map of the region
 #' @export
 #' @examples
@@ -10,10 +8,10 @@
 #' regionmap("eez")
 #' regionmap("eez", 76)
 #' }
-regionmap <- function(region, id, env="prod") {
+regionmap <- function(region, id) {
 
   # draw all regions
-  url <- paste(getapibaseurl(env), region, "?geojson=true", sep="/")
+  url <- paste(getapibaseurl(), region, "?geojson=true", sep="/")
   regions <- fortify(readOGR(dsn=url, layer=ogrListLayers(url), verbose=FALSE))
 
   if (!missing(id)) { # draw specified region

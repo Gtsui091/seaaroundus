@@ -1,15 +1,13 @@
 #' List available regions for a region type
 #' @param region region type
-#' @param env API environment
-#' Default: "prod"
 #' @return a data frame with region ids and title(s)
 #' @export
 #' @examples
 #' listregions("eez")
-listregions <- function(region, env="prod") {
+listregions <- function(region) {
 
   # create url
-  baseurl <- getapibaseurl(env)
+  baseurl <- getapibaseurl()
   url <- paste(baseurl, region, "?nospatial=true", sep="/")
 
   # call API
