@@ -3,9 +3,17 @@ getapibaseurl <- function() {
   return("http://api.seaaroundus.org/api/v1")
 }
 
-# call API and return data
+# call API with GET and return data
 callapi <- function(url) {
   resp <- GET(url, add_headers("X-Request-Source" = "r"))
+  stop_for_status(resp)
+  data <- fromJSON(content(resp, "text"))$data
+  return(data)
+}
+
+# call API with POST and return data
+postapi <- function(url, body) {
+  resp <- POST(url, body=body, add_headers("X-Request-Source" = "r"))
   stop_for_status(resp)
   data <- fromJSON(content(resp, "text"))$data
   return(data)

@@ -2,6 +2,7 @@
 
 export(catchdata)
 export(eezsvshighseas)
+export(getcells)
 export(listregions)
 export(marinetrophicindex)
 export(regionmap)
