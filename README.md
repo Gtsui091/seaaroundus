@@ -11,6 +11,10 @@ This software is free software:  you can redistribute it and/or modify
     the Free Software Foundation, either version 3 of the License, or
     any later version.  See the LICENSE file for a full statement of the License.
 
+### A note on usage
+ 
+When querying the API, please be respectful of the resources required to provide this data. We recommend you retain the results for each request so you can avoid repeated requests for duplicate information.
+
 
 ### Prerequisites
 
