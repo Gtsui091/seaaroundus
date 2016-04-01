@@ -82,6 +82,14 @@ marinetrophicindex("eez", 76)
 
 # marine trophic index for Brazil as graph
 marinetrophicindex("eez", 76, chart=TRUE)
+
+# get cells for a shape in WKT format
+getcells("POLYGON ((-48.177685950413291 15.842380165289299,-48.177685950413291 15.842380165289299,
+-54.964876033057919 28.964280991735578,-35.960743801652967 27.606842975206646,-48.177685950413291 
+15.842380165289299))")
+
+# get datagrid of cell data for a given year and list of cells
+getcelldata(2005, c(89568,90288,89569))
 ```
 
 
@@ -106,5 +114,4 @@ Dimensions:
 * catchtype
 * reporting-status
 * eez (only available for eez-bordering and taxon regions)
-* lme (only available for taxon region)
 * highseas (only available for taxon region)
