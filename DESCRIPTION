@@ -10,7 +10,7 @@ Authors@R: c(
   )
 Depends:
     R (>= 3.2.2)
-License: file LICENSE
+License: Apache License 2.0
 LazyData: true
 Imports:
     httr,
