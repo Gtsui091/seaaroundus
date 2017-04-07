@@ -4,3 +4,4 @@
 ^\.Rproj\.user$
 ^.*\.RData$
 DATA_USE
+.travis.yml
