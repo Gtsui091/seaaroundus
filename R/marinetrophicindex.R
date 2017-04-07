@@ -19,23 +19,23 @@
 marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level", transferefficiency=0.1) {
 
   # call API
-  querystring <- paste("?region_id=", id, "&transfer_efficiency=", transferefficiency, sep="")
-  data <- callapi(paste(getapibaseurl(), region, "marine-trophic-index", querystring, sep="/"))
+  querystring <- paste("?region_id=", id, "&transfer_efficiency=", transferefficiency, sep = "")
+  data <- callapi(paste(getapibaseurl(), region, "marine-trophic-index", querystring, sep = "/"))
 
   # get the data for the chart
-  named_data <- data[[2]]
-  names(named_data) <- data[[1]]
+  named_data <- data$values
+  names(named_data) <- data$key
 
   # rmti has 3 data sets
   if (type == "rmti") {
-    df <- data.frame(level_1950=named_data[["RMTI_1950"]][,2],
-                     level_1962=named_data[["RMTI_1962"]][,2],
-                     level_1972=named_data[["RMTI_1972"]][,2],
-                     row.names=named_data[["RMTI_1950"]][,1])
+    df <- data.frame(level_1950 = named_data[["RMTI_1950"]][, 2],
+                     level_1962 = named_data[["RMTI_1962"]][, 2],
+                     level_1968 = named_data[["RMTI_1968"]][, 2],
+                     year = named_data[["RMTI_1950"]][, 1])
 
   } else {
     data <- named_data[[type]]
-    df <- data.frame(level=data[,2], row.names=data[,1])
+    df <- data.frame(level = data[, 2], year = data[, 1])
   }
 
   # return dataframe
@@ -54,15 +54,14 @@ marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level
                     fib_index = "Fishing in Balance Index",
                     rmti = "Region-based Marine Trophic Index")
 
-    years <- as.integer(unlist(rownames(df)))
-    df[["year"]] <- years
+    years <- as.integer(df$year)
 
     # rmti has 3 data sets
     if (type == "rmti") {
       graph <- ggplot(data=df, aes(x=year)) +
         geom_path(aes(y=level_1950, colour="blue")) +
         geom_path(aes(y=level_1962, colour="cyan"), na.rm=TRUE) +
-        geom_path(aes(y=level_1972, colour="red"), na.rm=TRUE)
+        geom_path(aes(y=level_1968, colour="red"), na.rm=TRUE)
 
     } else {
       graph <- ggplot(data=df, aes(x=year, y=level)) +

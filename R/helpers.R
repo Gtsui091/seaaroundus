@@ -7,7 +7,7 @@ getapibaseurl <- function() {
 callapi <- function(url) {
   resp <- GET(url, add_headers("X-Request-Source" = "r"))
   stop_for_status(resp)
-  data <- fromJSON(content(resp, "text"))$data
+  data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
   return(data)
 }
 
