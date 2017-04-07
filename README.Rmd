@@ -1,7 +1,9 @@
 seaaroundus
 ===========
 
-
+```{r echo=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
 
 [![Build Status](https://api.travis-ci.org/ropensci/rseaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/rseaaroundus)
 [![codecov](https://codecov.io/gh/ropensci/rseaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rseaaroundus)
@@ -45,110 +47,95 @@ $ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 
 *via the R prompt*
 
-
-```r
+```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/rseaaroundus")
 ```
 
 ### Example usage
 
-
-```r
+```{r}
 library(seaaroundus)
 ```
 
 list available eezs
 
-
-```r
+```{r}
 listregions('eez')
 ```
 
 get species data for Brazil as a data frame
 
-
-```r
+```{r}
 catchdata("eez", 76)
 ```
 
 use alternative API environment (available on all functions)
-NOTE: alternative API environments may not always be publically accessible or stable
+> NOTE: alternative API environments may not always be publically accessible or stable
 
-
-```r
+```{r}
 catchdata("eez", 76, env="qa")
 ```
 
 get top 3 species data for Brazil as a data frame
 
-
-```r
+```{r}
 catchdata("eez", 76, limit=3)
 ```
 
 get reporting status data by value for Brazil as a data frame
 
-
-```r
+```{r}
 catchdata("eez", 76, measure="value", dimension="reporting-status")
 ```
 
 get species data for Brazil as a chart
 
-
-```r
+```{r}
 catchdata("eez", 76, chart=TRUE)
 ```
 
 get map of all eez regions
-NOTE: users on Windows have had some issues drawing region maps
+> NOTE: users on Windows have had some issues drawing region maps
 
-
-```r
+```{r}
 regionmap("eez")
 ```
 
 get region map of brazil
 
-
-```r
+```{r}
 regionmap("eez", 76)
 ```
 
 eez vs high seas percent catch data frame
 > NOTE: data not available until SeaAroundUs global paper is released
 
-
-```r
+```{r}
 eezsvshighseas()
 ```
 
 eez vs high seas percent catch graph
 
-
-```r
+```{r}
 eezsvshighseas(chart=TRUE)
 ```
 
 marine trophic index for Brazil as a data frame
 
-
-```r
+```{r}
 marinetrophicindex("eez", 76)
 ```
 
 marine trophic index for Brazil as graph
 
-
-```r
+```{r}
 marinetrophicindex("eez", 76, chart=TRUE)
 ```
 
 get cells for a shape in WKT format
 
-
-```r
+```{r}
 getcells("POLYGON ((-48.177685950413291 15.842380165289299,-48.177685950413291 15.842380165289299,
 -54.964876033057919 28.964280991735578,-35.960743801652967 27.606842975206646,-48.177685950413291 
 15.842380165289299))")
@@ -156,8 +143,7 @@ getcells("POLYGON ((-48.177685950413291 15.842380165289299,-48.177685950413291 1
 
 get datagrid of cell data for a given year and list of cells
 
-
-```r
+```{r}
 getcelldata(2005, c(89568,90288,89569))
 ```
 

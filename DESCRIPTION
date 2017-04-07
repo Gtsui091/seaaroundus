@@ -3,10 +3,14 @@ Title: Sea Around Us API Wrapper
 Description: Access Sea Around Us catch data and view it as data frames or
     stacked area charts.
 Version: 1.0.0
-Authors@R: person("Robert Scott", "Reis", email = "reis.robert.s@gmail.com", role=c("aut", "cre"))
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"),
+      email = "myrmecocystus+r@gmail.com"),
+    person("Robert Scott", "Reis", email = "reis.robert.s@gmail.com", role="aut")
+  )
 Depends:
     R (>= 3.2.2)
-License: file LICENSE
+License: MIT + file LICENSE
 LazyData: true
 Imports:
     httr,
