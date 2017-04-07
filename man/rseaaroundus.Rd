@@ -12,4 +12,3 @@
 Robert Scott Reis \email{reis.robert.s@gmail.com}
 }
 \keyword{package}
-

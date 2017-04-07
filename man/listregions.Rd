@@ -18,4 +18,3 @@ List available regions for a region type
 \examples{
 listregions("eez")
 }
-

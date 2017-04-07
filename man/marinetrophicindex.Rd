@@ -35,4 +35,3 @@ marinetrophicindex("eez", 76, type="fib_index", transferefficiency=0.25)
 marinetrophicindex("eez", 76, chart=TRUE)
 }
 }
-

@@ -10,7 +10,7 @@ Authors@R: c(
   )
 Depends:
     R (>= 3.2.2)
-License: MIT + file LICENSE
+License: file LICENSE
 LazyData: true
 Imports:
     httr,
@@ -21,6 +21,8 @@ Imports:
     rgdal,
     maps,
     sp
+Suggests:
+    roxygen2 (>= 6.0.1)
 Collate:
     seaaroundus.R
     helpers.R
@@ -30,4 +32,4 @@ Collate:
     eezsvshighseas.R
     marinetrophicindex.R
     spatial.R
-RoxygenNote: 5.0.0
+RoxygenNote: 6.0.1

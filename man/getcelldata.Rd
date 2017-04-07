@@ -21,4 +21,3 @@ Get a dataframe with catch data for a given list of cells and year
 \examples{
 getcelldata(2005, c(89568,90288,89569))
 }
-

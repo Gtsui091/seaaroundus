@@ -5,3 +5,4 @@
 ^.*\.RData$
 DATA_USE
 .travis.yml
+README.Rmd

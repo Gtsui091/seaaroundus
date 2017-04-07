@@ -37,4 +37,3 @@ catchdata("eez", 76, measure="value", dimension="reporting-status")
 catchdata("eez", 76, chart=TRUE)
 }
 }
-
