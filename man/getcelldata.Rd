@@ -4,13 +4,15 @@
 \alias{getcelldata}
 \title{Get a dataframe with catch data for a given list of cells and year}
 \usage{
-getcelldata(year = 2010, cells)
+getcelldata(year = 2010, cells, ...)
 }
 \arguments{
 \item{year}{year of data
 Default: 2010}
 
 \item{cells}{list of cell IDs}
+
+\item{...}{curl options passed on to \code{\link[httr]{POST}}}
 }
 \value{
 data frame with catch data for the requested cells and year

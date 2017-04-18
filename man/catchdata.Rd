@@ -5,7 +5,7 @@
 \title{Get catch data for a region as a dataframe or stacked area chart}
 \usage{
 catchdata(region, id, measure = "tonnage", dimension = "taxon",
-  limit = 10, chart = FALSE)
+  limit = 10, chart = FALSE, ...)
 }
 \arguments{
 \item{region}{region type}
@@ -23,6 +23,8 @@ Default: 10}
 
 \item{chart}{boolean to return a chart versus a data frame
 Default: \code{FALSE}}
+
+\item{...}{curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 data frame (or chart) with catch data for the requested region over time

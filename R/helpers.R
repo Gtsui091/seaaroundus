@@ -4,18 +4,18 @@ getapibaseurl <- function() {
 }
 
 # call API with GET and return data
-callapi <- function(url) {
-  resp <- GET(url, add_headers("X-Request-Source" = "r"))
+callapi <- function(url, ...) {
+  resp <- GET(url, add_headers("X-Request-Source" = "r"), ...)
   stop_for_status(resp)
   data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
   return(data)
 }
 
 # call API with POST and return data
-postapi <- function(url, body) {
-  resp <- POST(url, body=body, add_headers("X-Request-Source" = "r"))
+postapi <- function(url, body, ...) {
+  resp <- POST(url, body = body, add_headers("X-Request-Source" = "r"), ...)
   stop_for_status(resp)
-  data <- fromJSON(content(resp, "text"))$data
+  data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
   return(data)
 }
 

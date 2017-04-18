@@ -5,7 +5,7 @@
 \title{Get MTI as a data frame or chart}
 \usage{
 marinetrophicindex(region, id, chart = FALSE, type = "mean_trophic_level",
-  transferefficiency = 0.1)
+  transferefficiency = 0.1, ...)
 }
 \arguments{
 \item{region}{region type}
@@ -20,6 +20,8 @@ Default: "mean_trophic_level"}
 
 \item{transferefficiency}{float used for FiB index input
 Default: 0.1}
+
+\item{...}{curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 data frame (or chart) with MTI data

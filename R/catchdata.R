@@ -9,6 +9,7 @@
 #' Default: 10
 #' @param chart boolean to return a chart versus a data frame
 #' Default: \code{FALSE}
+#' @param ... curl options passed on to \code{\link[httr]{GET}}
 #' @return data frame (or chart) with catch data for the requested region over time
 #' @export
 #' @examples
@@ -17,7 +18,7 @@
 #' \dontrun{
 #' catchdata("eez", 76, chart=TRUE)
 #' }
-catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE) {
+catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE, ...) {
 
   # create url
   baseurl <- getapibaseurl()
@@ -25,7 +26,7 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10
   url <- paste(baseurl, region, measure, dimension, querystring, sep="/")
 
   # call API
-  data <- callapi(url)
+  data <- callapi(url, ...)
 
   # extract data from response
   values <- data$values

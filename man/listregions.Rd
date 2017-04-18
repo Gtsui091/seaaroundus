@@ -4,10 +4,12 @@
 \alias{listregions}
 \title{List available regions for a region type}
 \usage{
-listregions(region)
+listregions(region, ...)
 }
 \arguments{
 \item{region}{region type}
+
+\item{...}{curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
 a data frame with region ids and title(s)
