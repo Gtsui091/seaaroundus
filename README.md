@@ -3,8 +3,8 @@ seaaroundus
 
 
 
-[![Build Status](https://api.travis-ci.org/ropensci/rseaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/rseaaroundus)
-[![codecov](https://codecov.io/gh/ropensci/rseaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/rseaaroundus)
+[![Build Status](https://api.travis-ci.org/ropensci/seaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/seaaroundus)
+[![codecov](https://codecov.io/gh/ropensci/seaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/seaaroundus)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/seaaroundus)](https://github.com/metacran/cranlogs.app)
 
 
@@ -12,8 +12,8 @@ seaaroundus
 
 R wrapper for the [Sea Around Us API](https://github.com/SeaAroundUs/sau-web-mt).
 
-The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike 
-    4.0 International Public License.  
+The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike
+    4.0 International Public License.
 
 Please read the data use policy described in the DATA_USE file.
 
@@ -23,7 +23,7 @@ This software is free software:  you can redistribute it and/or modify
     any later version.  See the LICENSE file for a full statement of the License.
 
 ### A note on usage
- 
+
 When querying the API, please be respectful of the resources required to provide this data. We recommend you retain the results for each request so you can avoid repeated requests for duplicate information.
 
 
@@ -48,7 +48,7 @@ $ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 
 ```r
 install.packages("devtools")
-devtools::install_github("ropensci/rseaaroundus")
+devtools::install_github("ropensci/seaaroundus")
 ```
 
 ### Example usage
@@ -73,7 +73,7 @@ catchdata("eez", 76)
 ```
 
 use alternative API environment (available on all functions)
-NOTE: alternative API environments may not always be publically accessible or stable
+> NOTE: alternative API environments may not always be publically accessible or stable
 
 
 ```r
@@ -102,7 +102,7 @@ catchdata("eez", 76, chart=TRUE)
 ```
 
 get map of all eez regions
-NOTE: users on Windows have had some issues drawing region maps
+> NOTE: users on Windows have had some issues drawing region maps
 
 
 ```r
@@ -150,7 +150,7 @@ get cells for a shape in WKT format
 
 ```r
 getcells("POLYGON ((-48.177685950413291 15.842380165289299,-48.177685950413291 15.842380165289299,
--54.964876033057919 28.964280991735578,-35.960743801652967 27.606842975206646,-48.177685950413291 
+-54.964876033057919 28.964280991735578,-35.960743801652967 27.606842975206646,-48.177685950413291
 15.842380165289299))")
 ```
 
@@ -191,7 +191,7 @@ Dimensions:
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/rseaaroundus/issues).
+* Please [report any issues or bugs](https://github.com/ropensci/seaaroundus/issues).
 * License: MIT
 * Get citation information for `seaaroundus` in R doing `citation(package = 'seaaroundus')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
