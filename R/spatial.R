@@ -24,10 +24,15 @@ getcells <- function(shape, ...) {
 #' @return data frame with catch data for the requested cells and year
 #' @export
 #' @examples
-#' getcelldata(2005, c(89568,90288,89569))
+#' getcelldata(2004, cells = 89568)
+#' getcelldata(2008, cells = c(89568, 89569))
+#' getcelldata(2011, cells = c(89568, 90288, 89569))
 getcelldata <- function(year = 2010, cells, ...) {
-  body <- list(year = year, cells = cells)
-  data <- postapi(paste(getapibaseurl(), "spatial/r/cells", sep = "/"), body,
-                  ...)
-  return(data.frame(data))
+  assert(year, c('numeric', 'integer'))
+  assert(cells, c('numeric', 'integer'))
+  body <- list(year = year)
+  body <- c(body, as.list(stats::setNames(cells, rep("cells", length(cells)))))
+  data <- postapi(url = paste(getapibaseurl(), "spatial/r/cells", sep = "/"),
+                  body, ...)
+  return(data.frame(data, stringsAsFactors = FALSE))
 }

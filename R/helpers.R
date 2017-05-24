@@ -13,7 +13,9 @@ callapi <- function(url, ...) {
 
 # call API with POST and return data
 postapi <- function(url, body, ...) {
-  resp <- POST(url, body = body, add_headers("X-Request-Source" = "r"), ...)
+  resp <- POST(url, body = body,
+               add_headers("X-Request-Source" = "r",
+                           "HTTP_X_REQUEST_SOURCE" = "r"), ...)
   stop_for_status(resp)
   data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
   return(data)
@@ -35,4 +37,13 @@ theme_map <- function(base_size=9, base_family="") {
     legend.justification=c(0,0),
     legend.position=c(0,0)
   )
+}
+
+assert <- function(x, y) {
+  if (!is.null(x)) {
+    if (any(!vapply(x, class, "") %in% y)) {
+      stop(deparse(substitute(x)), " must be of class ",
+           paste0(y, collapse = ", "), call. = FALSE)
+    }
+  }
 }
