@@ -10,6 +10,9 @@
 #' -35.960743801652967 27.606842975206646,
 #' -48.177685950413291 15.842380165289299))")
 getcells <- function(shape, ...) {
+  shape <- gsub("\n", "", shape)
+  chk <- wicket::validate_wkt(shape)
+  if (!chk$is_valid) stop(chk$comments, call. = FALSE)
   return(
     postapi(paste(getapibaseurl(), "spatial/r/shape", sep = "/"),
             list(shape = shape), ...)
