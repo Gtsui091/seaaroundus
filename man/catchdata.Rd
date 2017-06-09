@@ -8,33 +8,37 @@ catchdata(region, id, measure = "tonnage", dimension = "taxon",
   limit = 10, chart = FALSE, ...)
 }
 \arguments{
-\item{region}{region type}
+\item{region}{(character) region type}
 
-\item{id}{region id}
+\item{id}{(numeric/integer) region id}
 
-\item{measure}{measure of the data
-Default: "tonnage"}
+\item{measure}{(character) the data measurement. one of "tonnage" or "value"
+(for "landed value"). Default: "tonnage"}
 
-\item{dimension}{dimension data is bucketed on
-Default: "taxon"}
+\item{dimension}{(character) dimension data is bucketed on. one of "taxon",
+"commercialgroup", "functionalgroup", "country", "sector", "catchtype",
+"reporting-status", "layer" (for "data layer"). Default: "taxon"}
 
-\item{limit}{number of buckets of data plus one for "others"
-Default: 10}
+\item{limit}{(numeric/integer) number of buckets of data plus one for
+"others". Default: 10}
 
-\item{chart}{boolean to return a chart versus a data frame
+\item{chart}{(boolean) to return a chart versus a data frame
 Default: \code{FALSE}}
 
 \item{...}{curl options passed on to \code{\link[httr]{GET}}}
 }
 \value{
-data frame (or chart) with catch data for the requested region over time
+data frame (or ggplot2 chart) with catch data for the requested
+region over time
 }
 \description{
 Get catch data for a region as a dataframe or stacked area chart
 }
 \examples{
 catchdata("eez", 76)
-catchdata("eez", 76, measure="value", dimension="reporting-status")
+head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
+catchdata("eez", 76, measure="value", dimension="sector")
+catchdata("eez", 76, measure="value", dimension="taxon")
 \dontrun{
 catchdata("eez", 76, chart=TRUE)
 }

@@ -1,20 +1,25 @@
 #' Get catch data for a region as a dataframe or stacked area chart
-#' @param region region type
-#' @param id region id
-#' @param measure measure of the data
-#' Default: "tonnage"
-#' @param dimension dimension data is bucketed on
-#' Default: "taxon"
-#' @param limit number of buckets of data plus one for "others"
-#' Default: 10
-#' @param chart boolean to return a chart versus a data frame
+#'
+#' @export
+#' @param region (character) region type
+#' @param id (numeric/integer) region id
+#' @param measure (character) the data measurement. one of "tonnage" or "value"
+#' (for "landed value"). Default: "tonnage"
+#' @param dimension (character) dimension data is bucketed on. one of "taxon",
+#' "commercialgroup", "functionalgroup", "country", "sector", "catchtype",
+#' "reporting-status", "layer" (for "data layer"). Default: "taxon"
+#' @param limit (numeric/integer) number of buckets of data plus one for
+#' "others". Default: 10
+#' @param chart (boolean) to return a chart versus a data frame
 #' Default: \code{FALSE}
 #' @param ... curl options passed on to \code{\link[httr]{GET}}
-#' @return data frame (or chart) with catch data for the requested region over time
-#' @export
+#' @return data frame (or ggplot2 chart) with catch data for the requested
+#' region over time
 #' @examples
 #' catchdata("eez", 76)
-#' catchdata("eez", 76, measure="value", dimension="reporting-status")
+#' head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
+#' catchdata("eez", 76, measure="value", dimension="sector")
+#' catchdata("eez", 76, measure="value", dimension="taxon")
 #' \dontrun{
 #' catchdata("eez", 76, chart=TRUE)
 #' }
