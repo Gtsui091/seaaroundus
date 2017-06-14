@@ -7,3 +7,5 @@ DATA_USE
 .travis.yml
 README.Rmd
 LICENSE
+man-roxygen
+
