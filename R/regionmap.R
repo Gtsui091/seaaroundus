@@ -1,12 +1,15 @@
 #' Get a map of the region specified
-#' @param region region type
-#' @param id region id
-#' @return map of the region
+#'
 #' @export
+#' @template regionid
+#' @return map of the region
 #' @examples
 #' \dontrun{
 #' regionmap("eez")
 #' regionmap("eez", 76)
+#'
+#' # a different region type
+#' regionmap("lme", 23)
 #' }
 regionmap <- function(region, id) {
 

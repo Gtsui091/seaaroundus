@@ -7,9 +7,11 @@
 regionmap(region, id)
 }
 \arguments{
-\item{region}{region type}
+\item{region}{(character) region type. one of: eez, lme, rfmo, highseas,
+fao, eez-bordering, fishing-entity, taxon, or global}
 
-\item{id}{region id}
+\item{id}{(character/integer/numeric) region id. depends on what
+\code{region} is specified. See \code{\link{regions}} for details}
 }
 \value{
 map of the region
@@ -21,5 +23,8 @@ Get a map of the region specified
 \dontrun{
 regionmap("eez")
 regionmap("eez", 76)
+
+# a different region type
+regionmap("lme", 23)
 }
 }

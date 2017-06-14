@@ -8,9 +8,11 @@ marinetrophicindex(region, id, chart = FALSE, type = "mean_trophic_level",
   transferefficiency = 0.1, ...)
 }
 \arguments{
-\item{region}{region type}
+\item{region}{(character) region type. one of: eez, lme, rfmo, highseas,
+fao, eez-bordering, fishing-entity, taxon, or global}
 
-\item{id}{region id}
+\item{id}{(character/integer/numeric) region id. depends on what
+\code{region} is specified. See \code{\link{regions}} for details}
 
 \item{chart}{boolean to return a chart versus a data frame
 Default: \code{FALSE}}

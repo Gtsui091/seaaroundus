@@ -1,8 +1,7 @@
 #' Get catch data for a region as a dataframe or stacked area chart
 #'
 #' @export
-#' @param region (character) region type
-#' @param id (numeric/integer) region id
+#' @template regionid
 #' @param measure (character) the data measurement. one of "tonnage" or "value"
 #' (for "landed value"). Default: "tonnage"
 #' @param dimension (character) dimension data is bucketed on. one of "taxon",

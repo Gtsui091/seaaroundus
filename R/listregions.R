@@ -1,8 +1,9 @@
 #' List available regions for a region type
+#'
+#' @export
 #' @param region region type
 #' @param ... curl options passed on to \code{\link[httr]{GET}}
 #' @return a data frame with region ids and title(s)
-#' @export
 #' @examples
 #' listregions("eez")
 listregions <- function(region, ...) {

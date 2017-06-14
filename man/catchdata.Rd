@@ -8,9 +8,11 @@ catchdata(region, id, measure = "tonnage", dimension = "taxon",
   limit = 10, chart = FALSE, ...)
 }
 \arguments{
-\item{region}{(character) region type}
+\item{region}{(character) region type. one of: eez, lme, rfmo, highseas,
+fao, eez-bordering, fishing-entity, taxon, or global}
 
-\item{id}{(numeric/integer) region id}
+\item{id}{(character/integer/numeric) region id. depends on what
+\code{region} is specified. See \code{\link{regions}} for details}
 
 \item{measure}{(character) the data measurement. one of "tonnage" or "value"
 (for "landed value"). Default: "tonnage"}
