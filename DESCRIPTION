@@ -2,7 +2,7 @@ Package: seaaroundus
 Title: Sea Around Us API Wrapper
 Description: Access Sea Around Us catch data and view it as data frames or
     stacked area charts.
-Version: 1.0.1.9144
+Version: 1.0.1.9146
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
       email = "myrmecocystus+r@gmail.com"),
@@ -26,13 +26,4 @@ Suggests:
     roxygen2 (>= 6.0.1),
     testthat
 Remotes: ropensci/wicket
-Collate:
-    seaaroundus.R
-    helpers.R
-    listregions.R
-    catchdata.R
-    regionmap.R
-    eezsvshighseas.R
-    marinetrophicindex.R
-    spatial.R
 RoxygenNote: 6.0.1
