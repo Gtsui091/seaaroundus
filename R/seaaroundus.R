@@ -1,16 +1,20 @@
 #' @name rseaaroundus
 #' @docType package
 #' @title R library for Sea Around Us
-#' @description: Access Sea Around Us catch data and view it as data frames or stacked area charts.
+#' @description: Access Sea Around Us catch data and view it as data frames
+#' or stacked area charts.
+#' @author Scott Chamberlain \email{myrmecocystus+r@@gmail.com}
 #' @author Robert Scott Reis \email{reis.robert.s@@gmail.com}
 #' @keywords package
 
-#' @import httr
+#' @importFrom httr GET POST write_disk add_headers stop_for_status content
 #' @importFrom jsonlite fromJSON serializeJSON
+#' @importFrom rgdal readOGR ogrListLayers
+#' @importFrom sf st_bbox read_sf
+#' @importFrom jsonlite fromJSON
 #' @import ggplot2
 #' @import grid
 #' @import scales
-#' @import rgdal
 #' @import maps
 #' @import sp
 

@@ -35,7 +35,7 @@ getcelldata <- function(year = 2010, cells, ...) {
   assert(cells, c('numeric', 'integer'))
   body <- list(year = year)
   body <- c(body, as.list(stats::setNames(cells, rep("cells", length(cells)))))
-  data <- postapi(url = paste(getapibaseurl(), "spatial/r/cells", sep = "/"),
-                  body, ...)
-  return(data.frame(data, stringsAsFactors = FALSE))
+  (data <- postapi(url = paste(getapibaseurl(), "spatial/r/cells", sep = "/"),
+                  body, ...))
+  #return(data.frame(data, stringsAsFactors = FALSE))
 }

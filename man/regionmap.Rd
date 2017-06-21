@@ -26,9 +26,9 @@ they are most likely okay, and don't indicate a problem
 \examples{
 \dontrun{
 regionmap("eez")
-regionmap(region="eez", id=76)
+regionmap(region = "eez", id = 76)
 
 # a different region type
-regionmap("lme", 23)
+regionmap(region = "lme", id = 23)
 }
 }

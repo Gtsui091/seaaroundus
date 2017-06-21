@@ -9,7 +9,6 @@ test_that("regionmap works", {
   expect_is(tt$layers, "list")
   expect_equal(tt$labels$x, "long")
   expect_equal(tt$labels$y, "lat")
-  expect_equal(tt$labels$map_id, "id")
 })
 
 test_that("regionmap fails well", {
@@ -17,5 +16,5 @@ test_that("regionmap fails well", {
 
   expect_error(regionmap(), "argument \"region\" is missing")
   expect_error(regionmap(id = 76), "argument \"region\" is missing")
-  expect_error(regionmap(45), "Cannot open data source")
+  expect_error(regionmap(45), "Open failed")
 })

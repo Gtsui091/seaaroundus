@@ -6,9 +6,12 @@
 \alias{rseaaroundus-package}
 \title{R library for Sea Around Us}
 \description{
-: Access Sea Around Us catch data and view it as data frames or stacked area charts.
+: Access Sea Around Us catch data and view it as data frames
+or stacked area charts.
 }
 \author{
+Scott Chamberlain \email{myrmecocystus+r@gmail.com}
+
 Robert Scott Reis \email{reis.robert.s@gmail.com}
 }
 \keyword{package}
