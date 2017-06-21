@@ -19,10 +19,14 @@ map of the region
 \description{
 Get a map of the region specified
 }
+\note{
+there's a number of warnings that print, all related to \pkg{ggplot2},
+they are most likely okay, and don't indicate a problem
+}
 \examples{
 \dontrun{
 regionmap("eez")
-regionmap("eez", 76)
+regionmap(region="eez", id=76)
 
 # a different region type
 regionmap("lme", 23)
