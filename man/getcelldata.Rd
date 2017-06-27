@@ -7,10 +7,9 @@
 getcelldata(year = 2010, cells, ...)
 }
 \arguments{
-\item{year}{year of data
-Default: 2010}
+\item{year}{(integer/numeric) year of data. Default: 2010}
 
-\item{cells}{list of cell IDs}
+\item{cells}{(vector/list) list of cell IDs}
 
 \item{...}{curl options passed on to \code{\link[httr]{POST}}}
 }
