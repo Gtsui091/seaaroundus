@@ -9,3 +9,4 @@ README.Rmd
 LICENSE
 man-roxygen
 .github
+^CONDUCT\.md$
