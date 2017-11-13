@@ -12,6 +12,7 @@ Depends:
     R (>= 3.2.2)
 License: Apache License 2.0
 LazyData: true
+Roxygen: list(markdown = TRUE)
 Imports:
     httr,
     jsonlite,
