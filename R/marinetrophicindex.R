@@ -3,12 +3,12 @@
 #' @export
 #' @template regionid
 #' @param chart boolean to return a chart versus a data frame
-#' Default: \code{FALSE}
+#' Default: `FALSE`
 #' @param type MTI data set ("mean_trophic_level", "fib_index", or "rmti")
 #' Default: "mean_trophic_level"
 #' @param transferefficiency float used for FiB index input
 #' Default: 0.1
-#' @param ... curl options passed on to \code{\link[httr]{GET}}
+#' @param ... curl options passed on to [httr::GET()]
 #' @return data frame (or chart) with MTI data
 #' @examples
 #' marinetrophicindex("eez", 76)

@@ -10,10 +10,11 @@ eezsvshighseas(chart = FALSE, ...)
 \item{chart}{boolean to return a chart versus a data frame
 Default: \code{FALSE}}
 
-\item{...}{curl options passed on to \code{\link[httr]{GET}}}
+\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
-data frame (or chart) with High Seas vs. EEZ data for the requested region over time
+data frame (or chart) with High Seas vs. EEZ data for the requested
+region over time
 }
 \description{
 Get data for percent of High Seas vs. EEZ catches as a data frame or chart

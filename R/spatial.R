@@ -3,8 +3,8 @@
 #' @export
 #' @param shape (character) WKT representation of SRID 4326
 #' polygon/multipolygon
-#' @param check_wkt (logical) validate WKT or not. Default: \code{FALSE}
-#' @param ... curl options passed on to \code{\link[httr]{POST}}
+#' @param check_wkt (logical) validate WKT or not. Default: `FALSE`
+#' @param ... curl options passed on to [httr::POST()]
 #' @return list of cell ids
 #' @examples
 #' getcells("POLYGON ((-48.177685950413291 15.842380165289299,
@@ -44,7 +44,7 @@ getcells <- function(shape, check_wkt = FALSE, ...) {
 #' @export
 #' @param year (integer/numeric) year of data. Default: 2010
 #' @param cells (vector/list) list of cell IDs
-#' @param ... curl options passed on to \code{\link[httr]{POST}}
+#' @param ... curl options passed on to [httr::POST()]
 #' @return data frame with catch data for the requested cells and year
 #' @examples
 #' getcelldata(2004, cells = 89568)

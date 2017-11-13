@@ -10,8 +10,8 @@
 #' @param limit (numeric/integer) number of buckets of data plus one for
 #' "others". Default: 10
 #' @param chart (boolean) to return a chart versus a data frame
-#' Default: \code{FALSE}
-#' @param ... curl options passed on to \code{\link[httr]{GET}}
+#' Default: `FALSE`
+#' @param ... curl options passed on to [httr::GET()]
 #' @return data frame (or ggplot2 chart) with catch data for the requested
 #' region over time
 #' @examples

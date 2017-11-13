@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @param region region type
-#' @param ... curl options passed on to \code{\link[httr]{GET}}
+#' @param ... curl options passed on to [httr::GET()]
 #' @return a data frame with region ids and title(s)
 #' @examples
 #' listregions("eez")

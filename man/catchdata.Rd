@@ -27,7 +27,7 @@ fao, eez-bordering, fishing-entity, taxon, or global}
 \item{chart}{(boolean) to return a chart versus a data frame
 Default: \code{FALSE}}
 
-\item{...}{curl options passed on to \code{\link[httr]{GET}}}
+\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
 data frame (or ggplot2 chart) with catch data for the requested

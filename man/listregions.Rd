@@ -9,7 +9,7 @@ listregions(region, ...)
 \arguments{
 \item{region}{region type}
 
-\item{...}{curl options passed on to \code{\link[httr]{GET}}}
+\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
 }
 \value{
 a data frame with region ids and title(s)

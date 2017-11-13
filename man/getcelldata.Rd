@@ -11,7 +11,7 @@ getcelldata(year = 2010, cells, ...)
 
 \item{cells}{(vector/list) list of cell IDs}
 
-\item{...}{curl options passed on to \code{\link[httr]{POST}}}
+\item{...}{curl options passed on to \code{\link[httr:POST]{httr::POST()}}}
 }
 \value{
 data frame with catch data for the requested cells and year
