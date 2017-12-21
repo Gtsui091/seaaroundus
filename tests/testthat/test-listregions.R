@@ -5,9 +5,8 @@ test_that("listregions works", {
 
   tt <- listregions("eez")
 
-  expect_is(row.names(tt), "character")
-  expect_true(sum(as.numeric(row.names(tt))) != sum(seq_len(NROW(tt))))
-  expect_named(tt, 'title')
+  expect_is(tt, "data.frame")
+  expect_named(tt, c('title', 'id'))
   expect_is(tt$title, "character")
 })
 

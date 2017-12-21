@@ -1,7 +1,7 @@
 Package: seaaroundus
 Title: Sea Around Us API Wrapper
-Description: Access Sea Around Us catch data and view it as data frames or
-    stacked area charts.
+Description: Access Sea Around Us (<http://www.seaaroundus.org/>) fish 
+    catch data, including tools for visualizing the data.
 Version: 1.2.0
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),

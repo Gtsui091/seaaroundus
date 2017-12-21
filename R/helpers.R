@@ -6,7 +6,7 @@ callapi <- function(path, args = list(), ...) {
   conn <- crul::HttpClient$new(
     url = getapibaseurl(),
     headers = list(`X-Request-Source` = "r"),
-    opts = list(...)
+    opts = list(followredirects = TRUE, ...)
   )
   resp <- conn$get(path = path, query = args)
   resp$raise_for_status()

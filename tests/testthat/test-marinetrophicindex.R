@@ -19,7 +19,7 @@ test_that("marinetrophicindex works", {
 })
 
 test_that("marinetrophicindex fails well", {
-  expect_error(marinetrophicindex(), "argument \"id\" is missing")
+  expect_error(marinetrophicindex(), "argument \"region\" is missing")
   expect_error(marinetrophicindex(id = 76), "argument \"region\" is missing")
 
   skip_on_cran()

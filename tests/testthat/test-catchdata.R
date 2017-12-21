@@ -14,8 +14,9 @@ test_that("catchdata works", {
 })
 
 test_that("fails well", {
-  expect_error(catchdata(), "argument \"id\" is missing")
+  expect_error(catchdata(), "argument \"region\" is missing")
   expect_error(catchdata(id = 76), "argument \"region\" is missing")
+  expect_error(catchdata(76), "argument \"id\" is missing")
 
   skip_on_cran()
 

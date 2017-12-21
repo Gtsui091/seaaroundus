@@ -32,6 +32,8 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon",
   # call API
   data <- callapi(path, args, ...)
 
+  if (is.null(data)) return(data.frame(NULL))
+
   # extract data from response
   values <- data$values
   years <- values[[1]][,1]
@@ -64,9 +66,9 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon",
       '#008', '#888', '#333')
     chartcolors <- rep(spectral, 10)
 
-    plot <- ggplot(df, aes(year, data)) +
+    ggplot(df, aes(year, data)) +
       geom_area(aes(fill=dim), position="stack") +
-      theme(legend.position="top", legend.key.size=unit(8, "native")) +
+      theme(legend.position="top", legend.key.size=ggplot2::unit(0.5, "cm")) +
       scale_x_continuous(breaks=seq(min(years), max(years), 10),
         expand=c(0, 0)) +
       scale_y_continuous(breaks=pretty_breaks(n=10), expand=c(0, 0)) +
@@ -75,7 +77,5 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon",
       scale_fill_manual(values = chartcolors) +
       labs(y = ylabel, x = "Year") +
       ggtitle(charttitle)
-
-    return(plot)
   }
 }
