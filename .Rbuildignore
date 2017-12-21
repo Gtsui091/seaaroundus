@@ -10,5 +10,4 @@ LICENSE
 man-roxygen
 .github
 ^CONDUCT\.md$
-^NEWS\.md$
 ^cran-comments\.md$
