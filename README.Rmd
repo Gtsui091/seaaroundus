@@ -2,9 +2,16 @@ seaaroundus
 ===========
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "tools/img/"
+)
 ```
 
+[![cran version](https://www.r-pkg.org/badges/version/seaaroundus)](https://cran.r-project.org/package=seaaroundus)
 [![Build Status](https://api.travis-ci.org/ropensci/seaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/seaaroundus)
 [![codecov](https://codecov.io/gh/ropensci/seaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/seaaroundus)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/seaaroundus)](https://github.com/metacran/cranlogs.app)
@@ -45,106 +52,99 @@ $ sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
 
 ### Installation
 
-*via the R prompt*
+CRAN version
+
+```{r eval=FALSE}
+install.packages("seaaroundus")
+```
+
+Dev version
 
 ```{r eval=FALSE}
 install.packages("devtools")
 devtools::install_github("ropensci/seaaroundus")
 ```
 
-### Example usage
-
 ```{r}
 library(seaaroundus)
 ```
 
+### Example usage
+
 list available eezs
 
 ```{r}
-listregions('eez')
+head(listregions('eez'))
 ```
 
 get species data for Brazil as a data frame
 
 ```{r}
-catchdata("eez", 76)
+head(catchdata("eez", 76))
 ```
 
 use alternative API environment (available on all functions)
 > NOTE: alternative API environments may not always be publically accessible or stable
 
 ```{r}
-catchdata("eez", 76, env="qa")
+head(catchdata("eez", 76, env="qa"))
 ```
 
 get top 3 species data for Brazil as a data frame
 
 ```{r}
-catchdata("eez", 76, limit=3)
+head(catchdata("eez", 76, limit=3))
 ```
 
 get reporting status data by value for Brazil as a data frame
 
 ```{r}
-catchdata("eez", 76, measure="value", dimension="reporting-status")
+head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
 ```
 
 get species data for Brazil as a chart
 
-```{r}
+```{r eval=FALSE}
 catchdata("eez", 76, chart=TRUE)
-```
-
-get map of all eez regions
-> NOTE: users on Windows have had some issues drawing region maps
-
-```{r}
-regionmap("eez")
-```
-
-get region map of brazil
-
-```{r}
-regionmap("eez", 76)
 ```
 
 eez vs high seas percent catch data frame
 > NOTE: data not available until SeaAroundUs global paper is released
 
 ```{r}
-eezsvshighseas()
+head(eezsvshighseas())
 ```
 
 eez vs high seas percent catch graph
 
-```{r}
+```{r eval=FALSE}
 eezsvshighseas(chart=TRUE)
 ```
 
 marine trophic index for Brazil as a data frame
 
 ```{r}
-marinetrophicindex("eez", 76)
+head(marinetrophicindex("eez", 76))
 ```
 
 marine trophic index for Brazil as graph
 
-```{r}
+```{r eval=FALSE}
 marinetrophicindex("eez", 76, chart=TRUE)
 ```
 
 get cells for a shape in WKT format
 
 ```{r}
-getcells("POLYGON ((-48.177685950413291 15.842380165289299,-48.177685950413291 15.842380165289299,
--54.964876033057919 28.964280991735578,-35.960743801652967 27.606842975206646,-48.177685950413291
-15.842380165289299))")
+wkt <- "POLYGON((2.37 43.56,13.18 43.56,13.18 35.66,2.37 35.66,2.37 43.56))"
+res <- getcells(wkt)
+res[1:10]
 ```
 
 get datagrid of cell data for a given year and list of cells
 
 ```{r}
-getcelldata(2005, c(89568,90288,89569))
+head(getcelldata(2005, c(89568,90288,89569)))
 ```
 
 ### Available parameters
