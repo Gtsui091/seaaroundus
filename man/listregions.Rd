@@ -7,16 +7,20 @@
 listregions(region, ...)
 }
 \arguments{
-\item{region}{region type}
+\item{region}{(character) region type}
 
-\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
 }
 \value{
-a data frame with region ids and title(s)
+a data frame with columns:
+\itemize{
+\item region title
+\item region ID
+}
 }
 \description{
 List available regions for a region type
 }
 \examples{
-listregions("eez")
+listregions(region = "eez")
 }

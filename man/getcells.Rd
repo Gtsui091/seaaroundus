@@ -12,7 +12,7 @@ polygon/multipolygon}
 
 \item{check_wkt}{(logical) validate WKT or not. Default: \code{FALSE}}
 
-\item{...}{curl options passed on to \code{\link[httr:POST]{httr::POST()}}}
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 list of cell ids

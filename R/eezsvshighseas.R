@@ -1,26 +1,31 @@
 #' Get data for percent of High Seas vs. EEZ catches as a data frame or chart
-#' @param chart boolean to return a chart versus a data frame
+#'
+#' @export
+#' @param chart (boolean) return a chart (`TRUE`) versus a data frame (`FALSE`)
 #' Default: `FALSE`
-#' @param ... curl options passed on to [httr::GET()]
+#' @param ... curl options passed on to [crul::HttpClient()]
 #' @return data frame (or chart) with High Seas vs. EEZ data for the requested
 #' region over time
-#' @export
+#'
 #' @examples
 #' eezsvshighseas()
 #' \dontrun{
 #' eezsvshighseas(chart=TRUE)
 #' }
 
-eezsvshighseas <- function(chart=FALSE, ...) {
+eezsvshighseas <- function(chart = FALSE, ...) {
+  assert(chart, "logical")
 
   # call API
-  data <- callapi(paste(getapibaseurl(), "global", "eez-vs-high-seas", "", sep="/"), ...)
+  data <- callapi(paste("api/v1/global", "eez-vs-high-seas", "", sep="/"),
+    ...)
 
   # create dataframe
   values <- data$values
   years <- as.numeric(values[[1]][,1])
-  df <- data.frame(as.double(values[[1]][,2]), as.double(values[[2]][,2]), row.names=years)
-  colnames(df) <- c("EEZ percent catch", "High Seas percent catch")
+  df <- data.frame(years, as.double(values[[1]][,2]),
+    as.double(values[[2]][,2]), stringsAsFactors = FALSE)
+  colnames(df) <- c("year", "eez_percent_catch", "high_seas_percent_catch")
 
   # return dataframe
   if (!chart) {
@@ -39,8 +44,8 @@ eezsvshighseas <- function(chart=FALSE, ...) {
       scale_y_continuous(breaks=seq(0, 100, 20), limits=c(0, 100), expand=c(0, 0)) +
       guides(fill=guide_legend(title=NULL, direction="horizontal", byrow=TRUE, ncol=5)) +
       scale_fill_manual(values=c("#ADC6E9", "#1776B6")) +
-      ylab("Percent of global catch") + xlab("Year") + ggtitle("Percent of landings in EEZs vs. High Seas")
-
+      labs(y = "Percent of global catch", x = "Year") +
+      ggtitle("Percent of landings in EEZs vs. High Seas")
     return(plot)
   }
 }

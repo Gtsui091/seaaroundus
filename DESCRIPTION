@@ -2,7 +2,7 @@ Package: seaaroundus
 Title: Sea Around Us API Wrapper
 Description: Access Sea Around Us catch data and view it as data frames or
     stacked area charts.
-Version: 1.0.1.9157
+Version: 1.2.0
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
       email = "myrmecocystus+r@gmail.com"),
@@ -14,18 +14,16 @@ License: Apache License 2.0
 LazyData: true
 Roxygen: list(markdown = TRUE)
 Imports:
-    httr,
+    crul (>= 0.4.0),
     jsonlite,
     ggplot2,
     grid,
     scales,
+    sp,
     rgdal,
     maps,
-    sf,
-    sp,
     wicket (>= 0.4.0)
 Suggests:
     roxygen2 (>= 6.0.1),
     testthat
-Remotes: ropensci/wicket
 RoxygenNote: 6.0.1

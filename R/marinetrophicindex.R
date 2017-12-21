@@ -8,10 +8,10 @@
 #' Default: "mean_trophic_level"
 #' @param transferefficiency float used for FiB index input
 #' Default: 0.1
-#' @param ... curl options passed on to [httr::GET()]
+#' @param ... curl options passed on to [crul::HttpClient]
 #' @return data frame (or chart) with MTI data
 #' @examples
-#' marinetrophicindex("eez", 76)
+#' marinetrophicindex(region = "eez", id = 76)
 #' marinetrophicindex("eez", 76, type="fib_index")
 #' marinetrophicindex("eez", 76, type="fib_index", transferefficiency=0.25)
 #' \dontrun{
@@ -20,8 +20,9 @@
 marinetrophicindex <- function(region, id, chart=FALSE, type="mean_trophic_level", transferefficiency=0.1, ...) {
 
   # call API
-  querystring <- paste("?region_id=", id, "&transfer_efficiency=", transferefficiency, sep = "")
-  data <- callapi(paste(getapibaseurl(), region, "marine-trophic-index", querystring, sep = "/"), ...)
+  path <- file.path("api/v1", region, "marine-trophic-index/")
+  args <- list(region_id = id, transfer_efficiency = transferefficiency)
+  data <- callapi(path, args, ...)
 
   # get the data for the chart
   named_data <- data$values

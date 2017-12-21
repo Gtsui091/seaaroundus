@@ -4,7 +4,7 @@
 #' @param shape (character) WKT representation of SRID 4326
 #' polygon/multipolygon
 #' @param check_wkt (logical) validate WKT or not. Default: `FALSE`
-#' @param ... curl options passed on to [httr::POST()]
+#' @param ... curl options passed on to [crul::HttpClient]
 #' @return list of cell ids
 #' @examples
 #' getcells("POLYGON ((-48.177685950413291 15.842380165289299,
@@ -23,7 +23,6 @@ getcells <- function(shape, check_wkt = FALSE, ...) {
   shape <- gsub("\n", "", shape)
   if (check_wkt) {
     chk <- wicket::validate_wkt(shape)
-    #if (!chk$is_valid) stop(chk$comments)
     if (!chk$is_valid) {
       cmt <- ""
       if (grepl("different orientation", chk$comments))
@@ -33,10 +32,7 @@ getcells <- function(shape, check_wkt = FALSE, ...) {
       stop(paste(chk$comments, cmt))
     }
   }
-  return(
-    postapi(paste(getapibaseurl(), "spatial/r/shape", sep = "/"),
-            list(shape = shape), ...)
-  )
+  postapi("api/v1/spatial/r/shape", list(shape = shape), ...)
 }
 
 #' Get a dataframe with catch data for a given list of cells and year
@@ -44,7 +40,7 @@ getcells <- function(shape, check_wkt = FALSE, ...) {
 #' @export
 #' @param year (integer/numeric) year of data. Default: 2010
 #' @param cells (vector/list) list of cell IDs
-#' @param ... curl options passed on to [httr::POST()]
+#' @param ... curl options passed on to [crul::HttpClient]
 #' @return data frame with catch data for the requested cells and year
 #' @examples
 #' getcelldata(2004, cells = 89568)
@@ -55,8 +51,7 @@ getcelldata <- function(year = 2010, cells, ...) {
   assert(cells, c('numeric', 'integer'))
   body <- list(year = year)
   body <- c(body, as.list(stats::setNames(cells, rep("cells", length(cells)))))
-  data <- postapi(url = paste(getapibaseurl(), "spatial/r/cells", sep = "/"),
-                  body, ...)
+  data <- postapi("api/v1/spatial/r/cells", body, ...)
   return(data.frame(data, stringsAsFactors = FALSE))
 }
 

@@ -7,10 +7,10 @@
 eezsvshighseas(chart = FALSE, ...)
 }
 \arguments{
-\item{chart}{boolean to return a chart versus a data frame
+\item{chart}{(boolean) return a chart (\code{TRUE}) versus a data frame (\code{FALSE})
 Default: \code{FALSE}}
 
-\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
 }
 \value{
 data frame (or chart) with High Seas vs. EEZ data for the requested

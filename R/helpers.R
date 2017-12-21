@@ -1,24 +1,28 @@
 # get the base URL of the API
-getapibaseurl <- function() {
-  return("http://api.seaaroundus.org/api/v1")
-}
+getapibaseurl <- function() "http://api.seaaroundus.org"
 
 # call API with GET and return data
-callapi <- function(url, ...) {
-  resp <- GET(url, add_headers("X-Request-Source" = "r"), ...)
-  stop_for_status(resp)
-  data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
-  return(data)
+callapi <- function(path, args = list(), ...) {
+  conn <- crul::HttpClient$new(
+    url = getapibaseurl(),
+    headers = list(`X-Request-Source` = "r"),
+    opts = list(...)
+  )
+  resp <- conn$get(path = path, query = args)
+  resp$raise_for_status()
+  jsonlite::fromJSON(resp$parse("UTF-8"))$data
 }
 
 # call API with POST and return data
-postapi <- function(url, body, ...) {
-  resp <- POST(url, body = body,
-               add_headers("X-Request-Source" = "r",
-                           "HTTP_X_REQUEST_SOURCE" = "r"), ...)
-  stop_for_status(resp)
-  data <- fromJSON(content(resp, "text", encoding = "UTF-8"))$data
-  return(data)
+postapi <- function(path, body, ...) {
+  conn <- crul::HttpClient$new(
+    url = getapibaseurl(),
+    headers = list(`X-Request-Source` = "r"),
+    opts = list(...)
+  )
+  resp <- conn$post(path = path, body = body)
+  resp$raise_for_status()
+  jsonlite::fromJSON(resp$parse("UTF-8"))$data
 }
 
 # make maps look nicer
@@ -32,7 +36,7 @@ theme_map <- function(base_size=9, base_family="") {
     panel.background=element_rect(fill='#81A6D6', colour='#333333'),
     panel.border=element_blank(),
     panel.grid=element_blank(),
-    panel.margin=unit(0, "lines"),
+    panel.spacing=unit(0, "lines"),
     plot.background=element_blank(),
     legend.justification=c(0,0),
     legend.position=c(0,0)

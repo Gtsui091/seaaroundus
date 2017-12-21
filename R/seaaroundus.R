@@ -10,10 +10,7 @@
 #' @author Scott Chamberlain \email{myrmecocystus+r@@gmail.com}
 #' @author Robert Scott Reis \email{reis.robert.s@@gmail.com}
 #' @keywords package
-#' @importFrom httr GET POST write_disk add_headers stop_for_status content
-#' @importFrom jsonlite fromJSON serializeJSON
-#' @importFrom rgdal readOGR ogrListLayers
-#' @importFrom sf st_bbox read_sf
+#' @importFrom crul HttpClient
 #' @importFrom jsonlite fromJSON
 #' @import ggplot2
 #' @import grid

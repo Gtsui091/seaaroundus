@@ -1,21 +1,16 @@
 #' List available regions for a region type
 #'
 #' @export
-#' @param region region type
-#' @param ... curl options passed on to [httr::GET()]
-#' @return a data frame with region ids and title(s)
+#' @param region (character) region type
+#' @param ... curl options passed on to [crul::HttpClient()]
+#' @return a data frame with columns:
+#'
+#' - region title
+#' - region ID
+#'
 #' @examples
-#' listregions("eez")
+#' listregions(region = "eez")
 listregions <- function(region, ...) {
-
-  # create url
-  baseurl <- getapibaseurl()
-  url <- paste(baseurl, region, "?nospatial=true", sep="/")
-
-  # call API
-  data <- callapi(url, ...)
-
-  # extract data from response
-  df <- data.frame(data, row.names='id')
-  return(df)
+  data <- callapi(paste0("api/v1/", region, "/"), list(nospatial = "true"), ...)
+  return(data)
 }

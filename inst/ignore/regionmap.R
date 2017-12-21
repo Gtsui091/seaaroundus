@@ -2,77 +2,69 @@
 #'
 #' @export
 #' @template regionid
+#' @param ... curl options passed on to [crul::HttpClient]
 #' @return map of the region
 #' @note there's a number of warnings that print, all related to \pkg{ggplot2},
 #' they are most likely okay, and don't indicate a problem
-#' @examples \dontrun{
-#' regionmap("eez")
+#' @examples
 #' regionmap(region = "eez", id = 76)
 #'
 #' # a different region type
 #' regionmap(region = "lme", id = 23)
+#'
+#' \dontrun{
+#' # all eez regions
+#' regionmap("eez")
 #' }
-regionmap <- function(region, id) {
-  url <- paste(getapibaseurl(), region, "?geojson=true", sep = "/")
-  tfile <- tempfile()
-  on.exit(unlink(tfile))
-  res <- httr::GET(url, httr::write_disk(tfile))
-  dat <- sf::read_sf(tfile)
-  ggplot2::fortify(dat)
-  ggplot(dat) +
-    geom_sf()
-
+regionmap <- function(region, id, ...) {
   # draw all regions
-  url <- paste(getapibaseurl(), region, "?geojson=true", sep = "/")
+  path <- paste("api/v1", region, "", sep = "/")
+  args <- list(geojson = "true")
   tfile <- tempfile()
   on.exit(unlink(tfile))
-  res <- httr::GET(url, httr::write_disk(tfile))
-  regions <- ggplot2::fortify(
-    rgdal::readOGR(dsn = tfile, layer = rgdal::ogrListLayers(tfile),
-                   verbose = FALSE))
+  conn <- crul::HttpClient$new(url = getapibaseurl(), opts = list(...))
+  res <- conn$get(path = path, query = args, disk = tfile)
+  res$raise_for_status()
+  dat <- sf::read_sf(readLines(tfile, warn = FALSE, encoding = "UTF-8"))
 
   if (!missing(id)) { # draw specified region
-    url <- paste(getapibaseurl(), region, paste(id, "?geojson=true", sep = ""),
-                 sep = "/")
+    path <- paste("api/v1", region, id, sep = "/")
+    args <- list(geojson = "true")
     tfile2 <- tempfile()
     on.exit(unlink(tfile2))
-    res <- httr::GET(url, httr::write_disk(tfile2))
-    rsp <- rgdal::readOGR(dsn = tfile2, layer = rgdal::ogrListLayers(tfile2),
-                          verbose = FALSE)
-    regionmap <- ggplot2::fortify(rsp)
+    conn <- crul::HttpClient$new(url = getapibaseurl(), opts = list(...))
+    res <- conn$get(path = path, query = args, disk = tfile2)
+    res$raise_for_status()
+    rsp <- sf::read_sf(readLines(tfile2, warn = FALSE, encoding = "UTF-8"))
 
     # get bounds for map zoom
-    bounds <- sp::bbox(rsp)
-    dim <- round(max(diff(bounds[1,]), diff(bounds[1,])))
-    center <- c(mean(bounds[1,]), mean(bounds[2,]))
+    bounds <- sf::st_bbox(rsp)
+    dim <- round(max(diff(bounds[c(1,3)]), diff(bounds[c(2,4)])))
+    center <- c(mean(bounds[c(1,3)]), mean(bounds[c(2,4)]))
     xlim <- c(center[1] - dim, center[1] + dim)
     ylim <- c(center[2] - dim, center[2] + dim)
   }
 
   # draw the map
-  map <- ggplot() +
-    geom_map(data = regions, map = regions,
-             aes(map_id = id, x = long, y = lat),
-             colour = "#394D66", fill = "#536D8E", size = 0.25)
+  map <- ggplot(dat) +
+    sf::geom_sf(colour = "#394D66", fill = "#536D8E", size = 0.25)
 
   if (!missing(id)) {
     map <- map +
-      geom_map(data = regionmap, map = regionmap,
-               aes(map_id = id, x = long, y = lat),
-               colour = "#449FD5", fill = "#CAD9EC", size = 0.25)
+      sf::geom_sf(data = rsp, colour = "#449FD5", fill = "#CAD9EC", size = 0.25)
   }
 
   if (identical(region, "eez") && !missing(id)) { # use ifa for eez
-    url <- paste(getapibaseurl(), region, id, "ifa", "?geojson=true", sep = "/")
+    path <- paste("api/v1", region, id, "ifa", "", sep = "/")
+    args <- list(geojson = "true")
     tfile3 <- tempfile()
     on.exit(unlink(tfile3))
-    res <- httr::GET(url, httr::write_disk(tfile3))
-    ifa <- ggplot2::fortify(
-      rgdal::readOGR(dsn = tfile3,
-                     layer = rgdal::ogrListLayers(tfile3), verbose = FALSE))
+    conn <- crul::HttpClient$new(url = getapibaseurl(), opts = list(...))
+    res <- conn$get(path = path, query = args, disk = tfile3)
+    res$raise_for_status()
+    ifa <- sf::read_sf(readLines(tfile3, warn = FALSE, encoding = "UTF-8"))
     map <- map +
-      geom_map(data = ifa, map = ifa, aes(map_id = id, x = long, y = lat),
-               colour = "#E96063", fill = "#E38F95", size = 0.25)
+      sf::geom_sf(data = ifa, colour = "#E96063", fill = "#E38F95", size = 0.25)
   }
 
   map <- map +
@@ -80,9 +72,9 @@ regionmap <- function(region, id) {
     theme_map()
 
   if (!missing(id)) {
-    map <- map + coord_equal(xlim = xlim, ylim = ylim)
+    map <- map + coord_sf(xlim = xlim, ylim = ylim)
   } else {
-    map <- map + coord_equal()
+    map <- map + coord_sf()
   }
 
   return(map)

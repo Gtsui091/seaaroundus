@@ -10,7 +10,7 @@ seaaroundus
 
 ## Sea Around Us API Wrapper
 
-R wrapper for the [Sea Around Us API](https://github.com/SeaAroundUs/sau-web-mt).
+R wrapper for the Sea Around Us API.
 
 The Sea Around Us data are licensed to the public under a Creative Commons Attribution-NonCommercial-ShareAlike
     4.0 International Public License.

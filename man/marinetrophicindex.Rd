@@ -23,7 +23,7 @@ Default: "mean_trophic_level"}
 \item{transferefficiency}{float used for FiB index input
 Default: 0.1}
 
-\item{...}{curl options passed on to \code{\link[httr:GET]{httr::GET()}}}
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 data frame (or chart) with MTI data
@@ -32,7 +32,7 @@ data frame (or chart) with MTI data
 Get MTI as a data frame or chart
 }
 \examples{
-marinetrophicindex("eez", 76)
+marinetrophicindex(region = "eez", id = 76)
 marinetrophicindex("eez", 76, type="fib_index")
 marinetrophicindex("eez", 76, type="fib_index", transferefficiency=0.25)
 \dontrun{

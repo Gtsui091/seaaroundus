@@ -11,7 +11,7 @@
 #' "others". Default: 10
 #' @param chart (boolean) to return a chart versus a data frame
 #' Default: `FALSE`
-#' @param ... curl options passed on to [httr::GET()]
+#' @param ... curl options passed on to [crul::HttpClient()]
 #' @return data frame (or ggplot2 chart) with catch data for the requested
 #' region over time
 #' @examples
@@ -20,17 +20,17 @@
 #' catchdata("eez", 76, measure="value", dimension="sector")
 #' catchdata("eez", 76, measure="value", dimension="taxon")
 #' \dontrun{
-#' catchdata("eez", 76, chart=TRUE)
+#' catchdata(region = "eez", id = 76, chart = TRUE)
 #' }
-catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE, ...) {
+catchdata <- function(region, id, measure="tonnage", dimension="taxon",
+  limit=10, chart=FALSE, ...) {
 
-  # create url
-  baseurl <- getapibaseurl()
-  querystring <- paste("?region_id=", id, "&limit=", limit, sep="")
-  url <- paste(baseurl, region, measure, dimension, querystring, sep="/")
+  # create url path and query parameters
+  path <- paste("api/v1", region, measure, dimension, "", sep="/")
+  args <- list(region_id = id, limit = limit)
 
   # call API
-  data <- callapi(url, ...)
+  data <- callapi(path, args, ...)
 
   # extract data from response
   values <- data$values
@@ -38,9 +38,9 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10
   cols <- lapply(values, function(v) { v[,2] })
 
   # create dataframe
-  df <- data.frame(cols, row.names=years)
+  df <- data.frame(years, cols, stringsAsFactors = FALSE)
   df[is.na(df)] <- 0
-  colnames(df) <- data$key
+  colnames(df) <- tolower(c("years", data$key))
 
   # return dataframe
   if (!chart) {
@@ -48,26 +48,33 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10
 
   # return chart
   } else {
-    ylabel <- ifelse(measure == "tonnage", "Catch (t x 1000)", "Real 2005 value (million US$)")
-    charttitle <- toupper(paste(region, id, measure, "by", dimension, sep=" "))
+    ylabel <- ifelse(measure == "tonnage", "Catch (t x 1000)",
+      "Real 2005 value (million US$)")
+    charttitle <- toupper(paste(region, id, measure, "by",
+      dimension, sep=" "))
 
     df <- Reduce(function(...) rbind(...), lapply(colnames(df), function(name) {
       coldata <- df[,name] / ifelse(measure=="tonnage", 10^3, 10^6)
       data.frame(year=years, data=coldata, dim=rep(name, nrow(df)))
     }))
 
-    spectral <- c("#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf", "#e6f598", "#abdda4", "#66c2a5",
-      "#3288bd", "#5e4fa2", '#666', '#f88', '#88f', '#8f8', '#800', '#080', '#008', '#888', '#333')
+    spectral <- c("#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b",
+      "#ffffbf", "#e6f598", "#abdda4", "#66c2a5",
+      "#3288bd", "#5e4fa2", '#666', '#f88', '#88f', '#8f8', '#800', '#080',
+      '#008', '#888', '#333')
     chartcolors <- rep(spectral, 10)
 
     plot <- ggplot(df, aes(year, data)) +
       geom_area(aes(fill=dim), position="stack") +
       theme(legend.position="top", legend.key.size=unit(8, "native")) +
-      scale_x_continuous(breaks=seq(min(years), max(years), 10), expand=c(0, 0)) +
+      scale_x_continuous(breaks=seq(min(years), max(years), 10),
+        expand=c(0, 0)) +
       scale_y_continuous(breaks=pretty_breaks(n=10), expand=c(0, 0)) +
-      guides(fill=guide_legend(title=NULL, direction="horizontal", byrow=TRUE, ncol=5)) +
-      scale_fill_manual(values=chartcolors) +
-      ylab(ylabel) + xlab("Year") + ggtitle(charttitle)
+      guides(fill=guide_legend(title=NULL, direction="horizontal",
+        byrow=TRUE, ncol=5)) +
+      scale_fill_manual(values = chartcolors) +
+      labs(y = ylabel, x = "Year") +
+      ggtitle(charttitle)
 
     return(plot)
   }
