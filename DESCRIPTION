@@ -2,7 +2,7 @@ Package: seaaroundus
 Title: Sea Around Us API Wrapper
 Description: Access Sea Around Us (<http://www.seaaroundus.org/>) fish 
     catch data, including tools for visualizing the data.
-Version: 1.2.0
+Version: 1.2.0.9100
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
       email = "myrmecocystus+r@gmail.com"),
