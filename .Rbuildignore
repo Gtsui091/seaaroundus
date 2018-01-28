@@ -11,3 +11,4 @@ man-roxygen
 .github
 ^CONDUCT\.md$
 ^cran-comments\.md$
+^codemeta\.json$
