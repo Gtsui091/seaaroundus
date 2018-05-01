@@ -11,6 +11,8 @@
 #' "others". Default: 10
 #' @param chart (boolean) to return a chart versus a data frame
 #' Default: `FALSE`
+#' @param sci_name (boolean) specifies if column names should be common or scientific names
+#' Default: `FALSE`
 #' @param ... curl options passed on to [crul::HttpClient()]
 #' @return data frame (or ggplot2 chart) with catch data for the requested
 #' region over time
@@ -19,11 +21,13 @@
 #' head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
 #' catchdata("eez", 76, measure="value", dimension="sector")
 #' catchdata("eez", 76, measure="value", dimension="taxon")
+#' # Get same data with scientific names
+#' catchdata("eez", 76, measure="value", dimension="taxon", sci_name = TRUE)
 #' \dontrun{
 #' catchdata(region = "eez", id = 76, chart = TRUE)
 #' }
-catchdata <- function(region, id, measure="tonnage", dimension="taxon",
-  limit=10, chart=FALSE, ...) {
+#' 
+catchdata <- function(region, id, measure="tonnage", dimension="taxon", limit=10, chart=FALSE, sci_name=FALSE, ...) {
 
   # create url path and query parameters
   path <- paste("api/v1", region, measure, dimension, "", sep="/")
@@ -42,7 +46,15 @@ catchdata <- function(region, id, measure="tonnage", dimension="taxon",
   # create dataframe
   df <- data.frame(years, cols, stringsAsFactors = FALSE)
   df[is.na(df)] <- 0
-  colnames(df) <- tolower(c("years", data$key))
+  
+  # Add scientific names if required
+  if(sci_name){
+    sci_names <- data$scientific_name
+    sci_names[is.na(sci_names)] <- "Other"
+    colnames(df) <- c("years", sci_names)
+  } else {
+    colnames(df) <- tolower(c("years", data$key))
+  }
 
   # return dataframe
   if (!chart) {
