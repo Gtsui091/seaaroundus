@@ -6,7 +6,7 @@ test_that("listregions works", {
   tt <- listregions("eez")
 
   expect_is(tt, "data.frame")
-  expect_named(tt, c('title', 'id'))
+  expect_named(tt, c('id', 'title'))
   expect_is(tt$title, "character")
 })
 
