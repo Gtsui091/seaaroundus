@@ -5,7 +5,7 @@
 \title{Get catch data for a region as a dataframe or stacked area chart}
 \usage{
 catchdata(region, id, measure = "tonnage", dimension = "taxon",
-  limit = 10, chart = FALSE, ...)
+  limit = 10, chart = FALSE, sci_name = FALSE, ...)
 }
 \arguments{
 \item{region}{(character) region type. one of: eez, lme, rfmo, highseas,
@@ -27,6 +27,9 @@ fao, eez-bordering, fishing-entity, taxon, or global}
 \item{chart}{(boolean) to return a chart versus a data frame
 Default: \code{FALSE}}
 
+\item{sci_name}{(boolean) specifies if column names should be common or scientific names
+Default: \code{FALSE}}
+
 \item{...}{curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
 }
 \value{
@@ -41,7 +44,10 @@ catchdata("eez", 76)
 head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
 catchdata("eez", 76, measure="value", dimension="sector")
 catchdata("eez", 76, measure="value", dimension="taxon")
+# Get same data with scientific names
+catchdata("eez", 76, measure="value", dimension="taxon", sci_name = TRUE)
 \dontrun{
 catchdata(region = "eez", id = 76, chart = TRUE)
 }
+
 }

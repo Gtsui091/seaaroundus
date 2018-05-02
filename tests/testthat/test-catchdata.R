@@ -22,3 +22,16 @@ test_that("fails well", {
 
   expect_equal(NROW(catchdata("Asdfadf", id = 76)), 0)
 })
+
+test_that("catchdata works with scientific names", {
+  skip_on_cran()
+  
+  tt <- catchdata("eez", 76, sci_name = TRUE)
+  
+  expect_is(row.names(tt), "character")
+  expect_is(names(tt), "character")
+  expect_is(tt, "data.frame")
+  expect_type(tt[,1], "double")
+  expect_type(tt[,2], "double")
+  expect_type(tt[,10], "double")
+})
