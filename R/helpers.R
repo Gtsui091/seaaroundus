@@ -1,5 +1,5 @@
 # get the base URL of the API
-getapibaseurl <- function() "http://api.seaaroundus.org"
+getapibaseurl <- function() "http://api.qa1.seaaroundus.org"
 
 # call API with GET and return data
 callapi <- function(path, args = list(), ...) {
