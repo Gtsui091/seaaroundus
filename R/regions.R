@@ -10,6 +10,6 @@
 #' - fao
 #' - eez-bordering
 #' - fishing-entity
-#' - taxon
+#' - taxa
 #' - global
 NULL
