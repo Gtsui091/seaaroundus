@@ -1,0 +1,54 @@
+---
+title: "Sea Around Us R Package"
+author: "Gordon Tsui"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+To get a list of our geographical regions with associated ids, use `listregions()`.  
+A list of our geography options:  
+`eez` - Exclusive Economic Zone  
+`highseas` - High Seas  
+`fao` - FAO Statistical areas  
+`lme` - Large marine ecosystem  
+`rfmo` - Regional fisheries management organization  
+`meow` - Marine ecoregions of the world  
+  
+`listregions()` can also be used to get ids for:  
+`fishing-entity` - Fishing entity (note the column 'id' is the fishing entity id. 'country id' is the geo entity)  
+`geo-entity` - additional information about countries but not a filter used in the catch data  
+`taxa` - list of our taxa and taxon keys  
+
+```{r}
+library(seaaroundus)
+head(listregions('eez'))
+```
+
+
+## Catch and Value data
+
+To obtain our catch and landed value data, use `catchdata(<region>, <id>)`.
+
+Accepted regions are:
+`eez`  
+`lme`  
+`rfmo`  
+`meow`  
+
+```{r}
+library(seaaroundus)
+df <- catchdata('eez', 8)
+head(df)
+```
+
