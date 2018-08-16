@@ -2,7 +2,6 @@
 #'
 #' @name regions
 #' @details Region options
-#'
 #' - eez
 #' - lme
 #' - rfmo
@@ -12,4 +11,5 @@
 #' - fishing-entity
 #' - taxa
 #' - global
+#' #'See \code{\link{listregions}} on how to obtain id numbers
 NULL

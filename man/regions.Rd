@@ -16,7 +16,8 @@ Region options
 \item fao
 \item eez-bordering
 \item fishing-entity
-\item taxon
+\item taxa
 \item global
+#'See \code{\link{listregions}} on how to obtain id numbers
 }
 }
