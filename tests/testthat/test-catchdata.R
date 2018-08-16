@@ -8,30 +8,17 @@ test_that("catchdata works", {
   expect_is(row.names(tt), "character")
   expect_is(names(tt), "character")
   expect_is(tt, "data.frame")
-  expect_type(tt[,1], "double")
-  expect_type(tt[,2], "double")
-  expect_type(tt[,10], "double")
+  expect_type(tt[,1], "integer")
+  expect_type(tt[,2], "character")
+  expect_type(tt[,10], "character")
 })
 
 test_that("fails well", {
   expect_error(catchdata(), "argument \"region\" is missing")
   expect_error(catchdata(id = 76), "argument \"region\" is missing")
-  expect_error(catchdata(76), "argument \"id\" is missing")
+  expect_error(catchdata(76), "check region is one of \"eez\", \"lme\", \"rfmo\", \"meow\"")
 
   skip_on_cran()
 
-  expect_equal(NROW(catchdata("Asdfadf", id = 76)), 0)
-})
-
-test_that("catchdata works with scientific names", {
-  skip_on_cran()
-  
-  tt <- catchdata("eez", 76, sci_name = TRUE)
-  
-  expect_is(row.names(tt), "character")
-  expect_is(names(tt), "character")
-  expect_is(tt, "data.frame")
-  expect_type(tt[,1], "double")
-  expect_type(tt[,2], "double")
-  expect_type(tt[,10], "double")
+  expect_error(catchdata("Asdfadf", id = 76), "check region is one of \"eez\", \"lme\", \"rfmo\", \"meow\"")
 })

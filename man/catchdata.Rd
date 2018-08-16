@@ -2,52 +2,28 @@
 % Please edit documentation in R/catchdata.R
 \name{catchdata}
 \alias{catchdata}
-\title{Get catch data for a region as a dataframe or stacked area chart}
+\title{Get catch data for a region as a dataframe}
 \usage{
-catchdata(region, id, measure = "tonnage", dimension = "taxon",
-  limit = 10, chart = FALSE, sci_name = FALSE, ...)
+catchdata(region, id, ...)
 }
 \arguments{
-\item{region}{(character) region type. one of: eez, lme, rfmo, highseas,
-fao, eez-bordering, fishing-entity, taxon, or global}
+\item{region}{(character) region of the data. Only one of "eez", "lme", "rfmo", "meow" will return data.}
 
-\item{id}{(character/integer/numeric) region id. depends on what
-\code{region} is specified. See \code{\link{regions}} for details}
+\item{id}{(integer/numeric) region id. depends on what
+\code{region} is specified. See \code{\link{listregions}} for details .}
 
-\item{measure}{(character) the data measurement. one of "tonnage" or "value"
-(for "landed value"). Default: "tonnage"}
-
-\item{dimension}{(character) dimension data is bucketed on. one of "taxon",
-"commercialgroup", "functionalgroup", "country", "sector", "catchtype",
-"reporting-status", "layer" (for "data layer"). Default: "taxon"}
-
-\item{limit}{(numeric/integer) number of buckets of data plus one for
-"others". Default: 10}
-
-\item{chart}{(boolean) to return a chart versus a data frame
-Default: \code{FALSE}}
-
-\item{sci_name}{(boolean) specifies if column names should be common or scientific names
-Default: \code{FALSE}}
-
-\item{...}{curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
+\item{...}{curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}.}
 }
 \value{
-data frame (or ggplot2 chart) with catch data for the requested
-region over time
+data frame with catch data for the requested
+region over the period 1950-2014.
 }
 \description{
-Get catch data for a region as a dataframe or stacked area chart
+Get catch data for a region as a dataframe
 }
 \examples{
 catchdata("eez", 76)
-head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
-catchdata("eez", 76, measure="value", dimension="sector")
-catchdata("eez", 76, measure="value", dimension="taxon")
-# Get same data with scientific names
-catchdata("eez", 76, measure="value", dimension="taxon", sci_name = TRUE)
-\dontrun{
-catchdata(region = "eez", id = 76, chart = TRUE)
-}
+head(catchdata("eez", 76))
+catchdata("rfmo", 1)
 
 }
