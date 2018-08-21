@@ -4,8 +4,8 @@
 \alias{marinetrophicindex}
 \title{Get MTI as a data frame or chart}
 \usage{
-marinetrophicindex(region, id, chart = FALSE, type = "mean_trophic_level",
-  transferefficiency = 0.1, ...)
+marinetrophicindex(region, id, chart = FALSE,
+  type = "mean_trophic_level", transferefficiency = 0.1, ...)
 }
 \arguments{
 \item{region}{(character) region type. one of: eez, lme, rfmo, highseas,

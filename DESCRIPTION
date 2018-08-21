@@ -13,6 +13,8 @@ Depends:
 License: Apache License 2.0
 LazyData: true
 Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
+Language: en-US
 Imports:
     crul (>= 0.4.0),
     jsonlite,
@@ -24,9 +26,9 @@ Imports:
     maps,
     wicket (>= 0.4.0)
 Suggests:
-    roxygen2 (>= 6.0.1),
+    roxygen2 (>= 6.1.0),
     testthat,
     knitr,
     rmarkdown
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr
