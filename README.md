@@ -3,6 +3,7 @@ seaaroundus
 
 
 
+[![cran checks](https://cranchecks.info/badges/worst/seaaroundus)](https://cranchecks.info/pkgs/seaaroundus)
 [![cran version](https://www.r-pkg.org/badges/version/seaaroundus)](https://cran.r-project.org/package=seaaroundus)
 [![Build Status](https://api.travis-ci.org/ropensci/seaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/seaaroundus)
 [![codecov](https://codecov.io/gh/ropensci/seaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/seaaroundus)
@@ -71,13 +72,13 @@ list available eezs
 
 ```r
 head(listregions('eez'))
-#>                            title  id
-#> 1                        Albania   8
-#> 2                        Algeria  12
-#> 3                 American Samoa  16
-#> 4 Andaman & Nicobar Isl. (India) 357
-#> 5                         Angola  24
-#> 6                  Anguilla (UK) 660
+#>    id                          title
+#> 1   8                        Albania
+#> 2  12                        Algeria
+#> 3  16                 American Samoa
+#> 4 357 Andaman & Nicobar Isl. (India)
+#> 5  24                         Angola
+#> 6 660                  Anguilla (UK)
 ```
 
 get species data for Brazil as a data frame
@@ -85,27 +86,34 @@ get species data for Brazil as a data frame
 
 ```r
 head(catchdata("eez", 76))
-#>   years brazilian sardinella whitemouth croaker atlantic seabob
-#> 1  1950                    0           7129.341               0
-#> 2  1951                    0           6499.208               0
-#> 3  1952                    0           6608.910               0
-#> 4  1953                    0           6769.266               0
-#> 5  1954                    0           6168.482               0
-#> 6  1955                    0           6976.245               0
-#>   sea catfishes, coblers herrings, sardines, menhadens argentine croaker
-#> 1               2913.719                      5857.411          1707.013
-#> 2               3280.651                      5267.541          1599.238
-#> 3               3333.485                      5356.747          2002.369
-#> 4               3417.538                      5486.354          1348.201
-#> 5               3664.398                      4935.857          1827.590
-#> 6               3652.267                      5639.058          2131.946
-#>   king weakfish argentine hake drums, croakers grey mullets   others
-#> 1      5076.131              0        1544.886      941.349 25156.60
-#> 2      4565.233              0        1794.251      846.551 26962.93
-#> 3      4642.063              0        1853.677      860.887 28678.96
-#> 4      4754.324              0        1844.091      881.717 26989.10
-#> 5      4277.566              0        2065.444      793.246 30082.72
-#> 6      4900.144              0        2025.746      906.258 32000.83
+#>   fao_area_id     sector             scientific_name fishing_entity
+#> 1          41  Artisanal                   Abudefduf         Brazil
+#> 2          41  Artisanal                   Abudefduf         Brazil
+#> 3          41  Artisanal                  Acanthurus         Brazil
+#> 4          41  Artisanal                     Achirus         Brazil
+#> 5          41 Industrial            Alopias vulpinus         Brazil
+#> 6          41  Artisanal Archosargus probatocephalus         Brazil
+#>   catch_type year   gear_group      catch landed_value
+#> 1   Landings 1950  Small scale 0.03769516     116.8927
+#> 2   Landings 1950  Small scale 0.07539033     233.7854
+#> 3   Landings 1950  Small scale 7.55222025   31945.8917
+#> 4   Landings 1950  Small scale 0.08333333     523.7500
+#> 5   Landings 1950 Bottom trawl 0.79096932    2330.9866
+#> 6   Landings 1950  Small scale 0.21730483     985.6947
+#>                     gear   common_name reporting_status               eez
+#> 1   small scale gillnets     Sergeants         Reported Brazil (mainland)
+#> 2      small scale lines     Sergeants         Reported Brazil (mainland)
+#> 3      small scale lines Surgeonfishes         Reported Brazil (mainland)
+#> 4 small scale seine nets         Soles         Reported Brazil (mainland)
+#> 5           bottom trawl      Thresher         Reported Brazil (mainland)
+#> 6      small scale lines    Sheepshead         Reported Brazil (mainland)
+#>   id
+#> 1 76
+#> 2 76
+#> 3 76
+#> 4 76
+#> 5 76
+#> 6 76
 ```
 
 use alternative API environment (available on all functions)
@@ -114,27 +122,34 @@ use alternative API environment (available on all functions)
 
 ```r
 head(catchdata("eez", 76, env="qa"))
-#>   years brazilian sardinella whitemouth croaker atlantic seabob
-#> 1  1950                    0           7129.341               0
-#> 2  1951                    0           6499.208               0
-#> 3  1952                    0           6608.910               0
-#> 4  1953                    0           6769.266               0
-#> 5  1954                    0           6168.482               0
-#> 6  1955                    0           6976.245               0
-#>   sea catfishes, coblers herrings, sardines, menhadens argentine croaker
-#> 1               2913.719                      5857.411          1707.013
-#> 2               3280.651                      5267.541          1599.238
-#> 3               3333.485                      5356.747          2002.369
-#> 4               3417.538                      5486.354          1348.201
-#> 5               3664.398                      4935.857          1827.590
-#> 6               3652.267                      5639.058          2131.946
-#>   king weakfish argentine hake drums, croakers grey mullets   others
-#> 1      5076.131              0        1544.886      941.349 25156.60
-#> 2      4565.233              0        1794.251      846.551 26962.93
-#> 3      4642.063              0        1853.677      860.887 28678.96
-#> 4      4754.324              0        1844.091      881.717 26989.10
-#> 5      4277.566              0        2065.444      793.246 30082.72
-#> 6      4900.144              0        2025.746      906.258 32000.83
+#>   fao_area_id     sector             scientific_name fishing_entity
+#> 1          41  Artisanal                   Abudefduf         Brazil
+#> 2          41  Artisanal                   Abudefduf         Brazil
+#> 3          41  Artisanal                  Acanthurus         Brazil
+#> 4          41  Artisanal                     Achirus         Brazil
+#> 5          41 Industrial            Alopias vulpinus         Brazil
+#> 6          41  Artisanal Archosargus probatocephalus         Brazil
+#>   catch_type year   gear_group      catch landed_value
+#> 1   Landings 1950  Small scale 0.03769516     116.8927
+#> 2   Landings 1950  Small scale 0.07539033     233.7854
+#> 3   Landings 1950  Small scale 7.55222025   31945.8917
+#> 4   Landings 1950  Small scale 0.08333333     523.7500
+#> 5   Landings 1950 Bottom trawl 0.79096932    2330.9866
+#> 6   Landings 1950  Small scale 0.21730483     985.6947
+#>                     gear   common_name reporting_status               eez
+#> 1   small scale gillnets     Sergeants         Reported Brazil (mainland)
+#> 2      small scale lines     Sergeants         Reported Brazil (mainland)
+#> 3      small scale lines Surgeonfishes         Reported Brazil (mainland)
+#> 4 small scale seine nets         Soles         Reported Brazil (mainland)
+#> 5           bottom trawl      Thresher         Reported Brazil (mainland)
+#> 6      small scale lines    Sheepshead         Reported Brazil (mainland)
+#>   id
+#> 1 76
+#> 2 76
+#> 3 76
+#> 4 76
+#> 5 76
+#> 6 76
 ```
 
 get top 3 species data for Brazil as a data frame
@@ -142,13 +157,34 @@ get top 3 species data for Brazil as a data frame
 
 ```r
 head(catchdata("eez", 76, limit=3))
-#>   years brazilian sardinella whitemouth croaker atlantic seabob   others
-#> 1  1950                    0           7129.341               0 43197.11
-#> 2  1951                    0           6499.208               0 44316.40
-#> 3  1952                    0           6608.910               0 46728.19
-#> 4  1953                    0           6769.266               0 44721.33
-#> 5  1954                    0           6168.482               0 47646.82
-#> 6  1955                    0           6976.245               0 51256.25
+#>   fao_area_id     sector             scientific_name fishing_entity
+#> 1          41  Artisanal                   Abudefduf         Brazil
+#> 2          41  Artisanal                   Abudefduf         Brazil
+#> 3          41  Artisanal                  Acanthurus         Brazil
+#> 4          41  Artisanal                     Achirus         Brazil
+#> 5          41 Industrial            Alopias vulpinus         Brazil
+#> 6          41  Artisanal Archosargus probatocephalus         Brazil
+#>   catch_type year   gear_group      catch landed_value
+#> 1   Landings 1950  Small scale 0.03769516     116.8927
+#> 2   Landings 1950  Small scale 0.07539033     233.7854
+#> 3   Landings 1950  Small scale 7.55222025   31945.8917
+#> 4   Landings 1950  Small scale 0.08333333     523.7500
+#> 5   Landings 1950 Bottom trawl 0.79096932    2330.9866
+#> 6   Landings 1950  Small scale 0.21730483     985.6947
+#>                     gear   common_name reporting_status               eez
+#> 1   small scale gillnets     Sergeants         Reported Brazil (mainland)
+#> 2      small scale lines     Sergeants         Reported Brazil (mainland)
+#> 3      small scale lines Surgeonfishes         Reported Brazil (mainland)
+#> 4 small scale seine nets         Soles         Reported Brazil (mainland)
+#> 5           bottom trawl      Thresher         Reported Brazil (mainland)
+#> 6      small scale lines    Sheepshead         Reported Brazil (mainland)
+#>   id
+#> 1 76
+#> 2 76
+#> 3 76
+#> 4 76
+#> 5 76
+#> 6 76
 ```
 
 get reporting status data by value for Brazil as a data frame
@@ -156,13 +192,34 @@ get reporting status data by value for Brazil as a data frame
 
 ```r
 head(catchdata("eez", 76, measure="value", dimension="reporting-status"))
-#>   years  reported unreported
-#> 1  1950  443600.5  194909739
-#> 2  1951  498019.1  188595589
-#> 3  1952  562198.1  181745220
-#> 4  1953  389671.3  160502627
-#> 5  1954  802928.4  120388021
-#> 6  1955 2531927.4  103156694
+#>   fao_area_id     sector             scientific_name fishing_entity
+#> 1          41  Artisanal                   Abudefduf         Brazil
+#> 2          41  Artisanal                   Abudefduf         Brazil
+#> 3          41  Artisanal                  Acanthurus         Brazil
+#> 4          41  Artisanal                     Achirus         Brazil
+#> 5          41 Industrial            Alopias vulpinus         Brazil
+#> 6          41  Artisanal Archosargus probatocephalus         Brazil
+#>   catch_type year   gear_group      catch landed_value
+#> 1   Landings 1950  Small scale 0.03769516     116.8927
+#> 2   Landings 1950  Small scale 0.07539033     233.7854
+#> 3   Landings 1950  Small scale 7.55222025   31945.8917
+#> 4   Landings 1950  Small scale 0.08333333     523.7500
+#> 5   Landings 1950 Bottom trawl 0.79096932    2330.9866
+#> 6   Landings 1950  Small scale 0.21730483     985.6947
+#>                     gear   common_name reporting_status               eez
+#> 1   small scale gillnets     Sergeants         Reported Brazil (mainland)
+#> 2      small scale lines     Sergeants         Reported Brazil (mainland)
+#> 3      small scale lines Surgeonfishes         Reported Brazil (mainland)
+#> 4 small scale seine nets         Soles         Reported Brazil (mainland)
+#> 5           bottom trawl      Thresher         Reported Brazil (mainland)
+#> 6      small scale lines    Sheepshead         Reported Brazil (mainland)
+#>   id
+#> 1 76
+#> 2 76
+#> 3 76
+#> 4 76
+#> 5 76
+#> 6 76
 ```
 
 get species data for Brazil as a chart
@@ -200,12 +257,12 @@ marine trophic index for Brazil as a data frame
 ```r
 head(marinetrophicindex("eez", 76))
 #>   level year
-#> 1  3.51 1950
-#> 2  3.53 1951
-#> 3  3.53 1952
-#> 4  3.52 1953
-#> 5  3.54 1954
-#> 6  3.54 1955
+#> 1  3.43 1950
+#> 2  3.44 1951
+#> 3  3.46 1952
+#> 4  3.42 1953
+#> 5  3.45 1954
+#> 6  3.45 1955
 ```
 
 marine trophic index for Brazil as graph
@@ -230,41 +287,41 @@ get datagrid of cell data for a given year and list of cells
 
 ```r
 head(getcelldata(2005, c(89568,90288,89569)))
-#>   taxon_scientific_name taxon_key commercial_group_id sector_type_id
-#> 1     Thunnus albacares    600143                   4              1
-#> 2     Thunnus albacares    600143                   4              1
-#> 3     Thunnus albacares    600143                   4              1
-#> 4        Thunnus obesus    600146                   4              1
-#> 5        Thunnus obesus    600146                   4              1
-#> 6        Thunnus obesus    600146                   4              1
-#>   commercial_group_name catch_status_name sector_type_name  catch_sum
-#> 1     Tuna & billfishes          Landings       Industrial 0.02261394
-#> 2     Tuna & billfishes          Landings       Industrial 0.02318308
-#> 3     Tuna & billfishes          Landings       Industrial 0.02261394
-#> 4     Tuna & billfishes          Landings       Industrial 0.03267660
-#> 5     Tuna & billfishes          Landings       Industrial 0.03377360
-#> 6     Tuna & billfishes          Landings       Industrial 0.03267660
-#>   functional_group_name catch_status reporting_status taxon_common_name
-#> 1             pelagiclg            R                R    Yellowfin tuna
-#> 2             pelagiclg            R                R    Yellowfin tuna
-#> 3             pelagiclg            R                R    Yellowfin tuna
-#> 4             pelagiclg            R                R       Bigeye tuna
-#> 5             pelagiclg            R                R       Bigeye tuna
-#> 6             pelagiclg            R                R       Bigeye tuna
-#>   fishing_entity_name year cell_id reporting_status_name
-#> 1              Taiwan 2005   89569              Reported
-#> 2              Taiwan 2005   90288              Reported
-#> 3              Taiwan 2005   89568              Reported
-#> 4              Taiwan 2005   89569              Reported
-#> 5              Taiwan 2005   90288              Reported
-#> 6              Taiwan 2005   89568              Reported
-#>   functional_group_id fishing_entity_id
-#> 1                   3                32
-#> 2                   3                32
-#> 3                   3                32
-#> 4                   3                32
-#> 5                   3                32
-#> 6                   3                32
+#>   fishing_entity_id commercial_group_name taxon_scientific_name
+#> 1                32     Tuna & billfishes        Kajikia albida
+#> 2                32     Tuna & billfishes        Kajikia albida
+#> 3                32     Tuna & billfishes        Kajikia albida
+#> 4                32     Tuna & billfishes        Thunnus obesus
+#> 5                32     Tuna & billfishes        Thunnus obesus
+#> 6                32     Tuna & billfishes        Thunnus obesus
+#>   reporting_status_name catch_status_name taxon_key   catch_sum
+#> 1              Reported          Landings    600219 0.002410807
+#> 2              Reported          Landings    600219 0.002339347
+#> 3              Reported          Landings    600219 0.002339347
+#> 4              Reported          Landings    600146 0.032676598
+#> 5              Reported          Landings    600146 0.033773604
+#> 6              Reported          Landings    600146 0.032676598
+#>   sector_type_name fishing_entity_name reporting_status year
+#> 1       Industrial              Taiwan                R 2005
+#> 2       Industrial              Taiwan                R 2005
+#> 3       Industrial              Taiwan                R 2005
+#> 4       Industrial              Taiwan                R 2005
+#> 5       Industrial              Taiwan                R 2005
+#> 6       Industrial              Taiwan                R 2005
+#>   sector_type_id functional_group_name commercial_group_id
+#> 1              1             pelagiclg                   4
+#> 2              1             pelagiclg                   4
+#> 3              1             pelagiclg                   4
+#> 4              1             pelagiclg                   4
+#> 5              1             pelagiclg                   4
+#> 6              1             pelagiclg                   4
+#>       taxon_common_name functional_group_id catch_status cell_id
+#> 1 Atlantic white marlin                   3            R   90288
+#> 2 Atlantic white marlin                   3            R   89568
+#> 3 Atlantic white marlin                   3            R   89569
+#> 4           Bigeye tuna                   3            R   89569
+#> 5           Bigeye tuna                   3            R   90288
+#> 6           Bigeye tuna                   3            R   89568
 ```
 
 ### Available parameters
@@ -300,6 +357,6 @@ Dimensions:
 * Please [report any issues or bugs](https://github.com/ropensci/seaaroundus/issues).
 * License: MIT
 * Get citation information for `seaaroundus` in R doing `citation(package = 'seaaroundus')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

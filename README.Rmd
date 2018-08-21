@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+[![cran checks](https://cranchecks.info/badges/worst/seaaroundus)](https://cranchecks.info/pkgs/seaaroundus)
 [![cran version](https://www.r-pkg.org/badges/version/seaaroundus)](https://cran.r-project.org/package=seaaroundus)
 [![Build Status](https://api.travis-ci.org/ropensci/seaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/seaaroundus)
 [![codecov](https://codecov.io/gh/ropensci/seaaroundus/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/seaaroundus)
@@ -180,6 +181,6 @@ Dimensions:
 * Please [report any issues or bugs](https://github.com/ropensci/seaaroundus/issues).
 * License: MIT
 * Get citation information for `seaaroundus` in R doing `citation(package = 'seaaroundus')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
