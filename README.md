@@ -2,7 +2,6 @@ seaaroundus
 ===========
 
 
-
 [![cran checks](https://cranchecks.info/badges/worst/seaaroundus)](https://cranchecks.info/pkgs/seaaroundus)
 [![cran version](https://www.r-pkg.org/badges/version/seaaroundus)](https://cran.r-project.org/package=seaaroundus)
 [![Build Status](https://api.travis-ci.org/ropensci/seaaroundus.svg?branch=master)](https://travis-ci.org/ropensci/seaaroundus)
